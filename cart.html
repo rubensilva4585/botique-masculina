@@ -11,27 +11,109 @@
   </head>
   <body>
     <!-- Header -->
-    <header>
-      <div class="navbar">
-        <div class="nav-left">
-          <div class="logo">
-            <img src="assets/img/logo.svg">
-          </div>
-          <ul>
-            <a href="#" class="active">Shop</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-          </ul>
-        </div>
+    <header></header>
 
-        <div class="cart-btn">
-          <img src="assets/img/cart.svg">
-          <span>0</span>
-        </div>
+<!-- Main -->
+<main>
+  <div class="container">
+    <h1>Cart</h1>
+    <div class="checkout-grid">
+      <div class="item-list">
+        <ul>
+          <li>
+            <div class="item-card">
+              <div class="checkout-product-image">
+                <img src="https://assets.adidas.com/images/w_750,h_750,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/bf50b13715c94496bb2dab3a01050a38_9366/GD3576_160_GD3576_03_standard.jpg.jpg" alt="product image">
+              </div>
+              <div class="product-details">
+                <p>product name</p>
+                <p class="price">price</p>
+              </div>
+              <div class="product-quantity-container">
+                <button class="btn" type="button"><i class="fa-solid fa-chevron-up"></i></button>
+                <input type="text" placeholder="100">
+                <button class="btn" type="button"><i class="fa-solid fa-chevron-down"></i></button>
+              </div>
+              <i class="fa-regular fa-trash-can"></i>
+            </div>
+          </li>
+          <li>
+            <div class="item-card">
+              <div class="checkout-product-image">
+                <img src="" alt="product image">
+              </div>
+              <div class="product-details">
+                <p>product name</p>
+                <p class="price">price</p>
+              </div>
+              <div class="product-quantity-container">
+                <button class="btn" type="button"><i class="fa-solid fa-chevron-up"></i></button>
+                <input type="text" placeholder="100">
+                <button class="btn" type="button"><i class="fa-solid fa-chevron-down"></i></button>
+              </div>
+              <i class="fa-regular fa-trash-can"></i>
+            </div>
+          </li>
+          <li>
+            <div class="item-card">
+              <div class="checkout-product-image">
+                <img src="" alt="product image">
+              </div>
+              <div class="product-details">
+                <p>product name</p>
+                <p class="price">price</p>
+              </div>
+              <div class="product-quantity-container">
+                <button class="btn" type="button"><i class="fa-solid fa-chevron-up"></i></button>
+                <input type="text" placeholder="100">
+                <button class="btn" type="button"><i class="fa-solid fa-chevron-down"></i></button>
+              </div>
+              <i class="fa-regular fa-trash-can"></i>
+            </div>
+          </li>
+          <li>
+            <div class="item-card">
+              <div class="checkout-product-image">
+                <img src="" alt="product image">
+              </div>
+              <div class="product-details">
+                <p>product name</p>
+                <p class="price">price</p>
+              </div>
+              <div class="product-quantity-container">
+                <button class="btn" type="button"><i class="fa-solid fa-chevron-up"></i></button>
+                <input type="text" placeholder="100">
+                <button class="btn" type="button"><i class="fa-solid fa-chevron-down"></i></button>
+              </div>
+              <i class="fa-regular fa-trash-can"></i>
+            </div>
+          </li>
+        </ul>
       </div>
-    </header>
+      <div class="check-coupon-container">
+        <form action="">
+          <label>
+            <input class="input-coupon" type="text" placeholder="Coupon code here">
+          </label>
+          <button class="btn" type="submit">check coupon</button>
+        </form>
+      </div>
+      <div class="container order-total-container">
+        <div class="order-total-text">
+          <p>Sub-total</p>
+          <p>Discount</p>
+          <p>Total</p>
+        </div>
+        <div class="order-total-values">
+          <p>€</p>
+          <p>%</p>
+          <p>€</p>
+        </div>
 
-
+      </div>
+    </div>
+  </div>
+</main>
     
     <script type="module" src="/cart.js"></script>
   </body>
