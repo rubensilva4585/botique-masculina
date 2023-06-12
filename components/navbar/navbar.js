@@ -16,16 +16,18 @@ function navBarTop() {
 
     const divNavbarLeft = document.createElement('div')
     divNavbarLeft.classList.add('nav-left') 
+
     divNavbarLeft.innerHTML = `
-        <div class="logo">
-            <img src="assets/img/logo.svg">
-        </div>
-        <ul>
-            <a ${isActivePage('/index.html') ? ' href="#" class="active" ' : 'href="/index.html"' }">Shop</a>
-            <a ${isActivePage('/aboutus.html') ? ' href="#" class="active" ' : 'href="/aboutus.html"' }">About</a>
-            <a ${isActivePage('/contact.html') ? ' href="#" class="active" ' : 'href="/contact.html"' }">Contact</a>
-        </ul>
+      <div class="logo">
+          <img src="assets/img/logo.svg">
+      </div>
+      <ul>
+          <a href="/index.html">Shop</a>
+          <a href="/aboutus.html">About</a>
+          <a href="/contact.html">Contact</a>
+      </ul>
     `
+    checkActivePage(divNavbarLeft)
 
     const divNavbarRight = document.createElement('div')
     divNavbarRight.classList.add('nav-right') 
@@ -63,11 +65,12 @@ function navBarMobile() {
             <i class="fa-xl fa-solid fa-xmark"></i>
         </div>
         <ul>
-            <a ${isActivePage('/index.html') ? ' href="#" class="active" ' : 'href="/index.html"' }">Shop<i class="fa-solid fa-angle-right"></i></a>
-            <a ${isActivePage('/aboutus.html') ? ' href="#" class="active" ' : 'href="/aboutus.html"' }">About<i class="fa-solid fa-angle-right"></i></a>
-            <a ${isActivePage('/contact.html') ? ' href="#" class="active" ' : 'href="/contact.html"' }">Contact<i class="fa-solid fa-angle-right"></i></a>
+            <a href="/index.html">Shop<i class="fa-solid fa-angle-right"></i></a>
+            <a href="/aboutus.html">About<i class="fa-solid fa-angle-right"></i></a>
+            <a href="/contact.html">Contact<i class="fa-solid fa-angle-right"></i></a>
         </ul>
     ` 
+    checkActivePage(divMobileNavbar)
     div.appendChild(divMobileNavbar)
 
     // botao fechar menu
@@ -88,11 +91,21 @@ function navBarMobile() {
     return div
 }
 
-// Funcao para adicionar class "active" na pagina ativa da navbar
-function isActivePage(href) {
-    return window.location.pathname === href;
-}
+// Mudar para active todos os links que tenham o href igual ao pathname
+function checkActivePage(div) {
+  let currentPath = window.location.pathname
+  if (!currentPath.includes('.html')) {
+      currentPath = '/index.html'
+  }
 
+  const links = div.querySelectorAll('a')
+  links.forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+          link.classList.add('active')
+          link.setAttribute('href', '#')
+      }
+  })
+}
 
 
 
