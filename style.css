@@ -434,17 +434,17 @@ h6 {
 
 .contact-form input {
     width: 100%;
-    box-sizing: border-box;
     padding: 5px 5px 15px 5px;
     margin-bottom: 15px;
     background-color: transparent;
-    border: 1px solid var(--white);
+    border: 1px solid var(--slate-400);
     color: var(--white);
-    border-radius: 0px;
+    transition: all 0.5s ease;
 }
 
 .contact-form input:focus {
-    outline: 0;
+    outline: none;
+    border: 1px solid var(--white);
 }
 
 .contact-form textarea {
@@ -452,14 +452,15 @@ h6 {
     padding: 5px 5px 40px 5px;
     margin-bottom: 15px;
     background-color: transparent;
-    border: 1px solid var(--white);
+    border: 1px solid var(--slate-400);
     color: var(--white);
-    border-radius: 0px;
     resize: none;
+    transition: all 0.5s ease;
 }
 
 .contact-form textarea:focus {
-    outline: 0;
+    outline: none;
+    border: 1px solid var(--white);
 }
 
 .contact-form button {
@@ -470,6 +471,13 @@ h6 {
     color: var(--white);
     border-radius: 0px;
     cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.contact-form button:hover {
+    background-color: var(--white);
+    color: var(--black);
+    transition: all 0.5s ease;
 }
 
 .contact-map {
@@ -494,13 +502,13 @@ h6 {
 
 
 /* #region == shop == */
-.products-grid{
+.products-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 }
 
-.product-card{
+.product-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -511,34 +519,37 @@ h6 {
     height: 100%;
     overflow: hidden;
 }
-.product-card:hover{
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+
+.product-card:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
-.product-image{
+.product-image {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    height: 220px; 
+    height: 220px;
     padding: 30px;
     margin-bottom: 1rem;
     overflow: hidden;
     position: relative;
 }
-.product-image img{
+
+.product-image img {
     width: 100%;
     /* height: auto; */
     cursor: pointer;
     transition: all 0.5s ease;
 }
-.product-card:hover .product-image img{
+
+.product-card:hover .product-image img {
     transform: scale(1.1);
 }
 
 
 
-.product-addcart{
+.product-addcart {
     position: absolute;
     bottom: 10px;
     transition: all 0.5s ease;
@@ -553,14 +564,14 @@ h6 {
     font-size: .875rem;
 }
 
-.product-addcart:hover{
+.product-addcart:hover {
     background-color: var(--color-primary);
     opacity: 1;
 }
 
 
 
-.product-info .product-name{
+.product-info .product-name {
     color: var(--slate-400);
     font-size: 1rem;
     font-weight: 300;
@@ -569,7 +580,7 @@ h6 {
     white-space: nowrap;
 }
 
-.product-pricenrating{
+.product-pricenrating {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -577,16 +588,17 @@ h6 {
     margin-top: 10px;
 }
 
-.product-info .product-price{
+.product-info .product-price {
     font-weight: 500;
     font-size: 1.125rem;
 }
 
-.product-rating{
+.product-rating {
     display: flex;
     gap: 1px;
 }
-.product-rating i{
+
+.product-rating i {
     color: var(--slate-400);
 }
 
@@ -639,11 +651,12 @@ h6 {
     /*    */
     /*}*/
 
-    .products-grid{
+    .products-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    .product-image{
-        height: 220px; 
+
+    .product-image {
+        height: 220px;
     }
 }
 
@@ -673,17 +686,20 @@ h6 {
         height: 100vh;
     }
 
-    .products-grid{
+    .products-grid {
         grid-template-columns: repeat(4, 1fr);
     }
-    .product-image{
-        height: 250px; 
+
+    .product-image {
+        height: 250px;
     }
-    .product-addcart{
+
+    .product-addcart {
         bottom: -25px;
         opacity: 0;
     }
-    .product-card:hover .product-addcart{
+
+    .product-card:hover .product-addcart {
         bottom: 10px;
         opacity: 1;
     }
@@ -693,7 +709,8 @@ h6 {
     .container {
         max-width: 1140px;
     }
-    .product-image{
-        height: 300px; 
+
+    .product-image {
+        height: 300px;
     }
 }
