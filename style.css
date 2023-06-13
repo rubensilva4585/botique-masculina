@@ -281,15 +281,14 @@ h6 {
 .item-card{
     display: flex;
     height: 150px;
-    justify-content: space-between;
     border: 1px var(--slate-300) solid;
     border-radius: 15px;
     margin-top: 10px;
     overflow: hidden;
 }
 
-.item-card>.fa-trash-can{
-    margin: 10px 10px;
+.edit-container>.fa-trash-can{
+
 }
 
 .checkout-product-image>img{
@@ -298,11 +297,22 @@ h6 {
 
 .product-details{
     display: flex;
-    flex-direction: column;
-    width: 150px;
+    width: 100%;
     text-align: justify;
     justify-content: space-between;
-    padding: 15px 5px;
+    padding: 1rem;
+}
+
+.edit-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    width: fit-content;
+}
+
+.details-container{
+    width: 100%;
 }
 
 .product-details>.price{
@@ -316,7 +326,6 @@ h6 {
     width: fit-content;
     height: fit-content;
     border-radius: 5px;
-    align-self: center;
     overflow: hidden;
 }
 .product-quantity-container input{
@@ -363,6 +372,10 @@ h6 {
 
 .input-coupon:focus{
     outline: 0;
+}
+
+.payment-info{
+
 }
 
 .order-total-container{
@@ -415,11 +428,44 @@ h6 {
     .container {
         max-width: 720px;
     }
+
+    /*.item-list{*/
+    /*    max-width: 80%;*/
+    /*}*/
+
+    /*.payment-info{*/
+    /*    max-width: 80%;*/
+    /*}*/
+
+    /*.checkout-grid{*/
+    /*    */
+    /*}*/
 }
 
 @media (min-width: 992px) {
     .container {
         max-width: 960px;
+    }
+
+    .item-list{
+        max-width: 100%;
+    }
+
+    .checkout-grid{
+        display: grid;
+        grid-template-areas: "items items payment";
+    }
+
+    .item-list{
+        grid-area: items;
+    }
+
+    .payment-info{
+        margin-top: 2rem;
+        grid-area: payment;
+        position: sticky;
+        top: 4rem;
+        height: 100vh;
     }
 }
 
