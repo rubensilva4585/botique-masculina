@@ -1,8 +1,17 @@
+import '../../styles/navbar.css'
+
 export function setNavBar() {
     const body = document.querySelector('body')
     body.appendChild(navBarMobile())
 
     const header = document.querySelector('header')
+    header.innerHTML = ` 
+      <div class="top-info">
+        <i class="fa-solid fa-tags"></i>
+        <span>40% off all products. Use code: TPSI0922</span>
+      </div>
+    `
+
     header.appendChild(navBarTop())
 
     header.style.backgroundColor = "white";
@@ -14,13 +23,16 @@ function navBarTop() {
     const divNavbar = document.createElement('div')
     divNavbar.classList.add('navbar', 'container')
 
-    const divNavbarLeft = document.createElement('div')
-    divNavbarLeft.classList.add('nav-left') 
-
-    divNavbarLeft.innerHTML = `
-      <div class="logo">
-          <img src="assets/img/logo.svg">
+    divNavbar.innerHTML = `
+      <div class="navbar-logo">
+        <img src="assets/img/logo.svg">
       </div>
+    `
+
+    const divNavbarLeft = document.createElement('div')
+    divNavbarLeft.classList.add('navbar-menu') 
+    
+    divNavbarLeft.innerHTML = `
       <ul>
           <a href="/index.html">Shop</a>
           <a href="/aboutus.html">About</a>
@@ -30,17 +42,21 @@ function navBarTop() {
     checkActivePage(divNavbarLeft)
 
     const divNavbarRight = document.createElement('div')
-    divNavbarRight.classList.add('nav-right') 
+    divNavbarRight.classList.add('navbar-buttons') 
     divNavbarRight.innerHTML = `
-        <a href="cart.html" class="cart-btn">
-            <img src="assets/img/cart.svg">
-            <span>0</span>
+        <a href="cart.html" class="cartBtn">
+          <div class="cartBtnPrice">
+            <span>0.00€</span>
+          </div>
+          <div class="cartBtnItems">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="numItems">0</span>
+          </div>
         </a>
         <div class="navMobileBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
     `
-
     divNavbar.appendChild(divNavbarLeft)
     divNavbar.appendChild(divNavbarRight)
 
@@ -124,6 +140,61 @@ const dispatchOpenMobileNavbarEvent = () => {
 
 
 /// NAO APAGAR
+
+{/* <div class="mobile-nav-backfilter"></div>
+<div class="mobile-navmenu">
+  <div class="mobile-navmenu-exit">
+    <i class="fa-xl fa-solid fa-xmark"></i>
+  </div>
+  <ul>
+    <a href="#" class="active">Shop<i class="fa-solid fa-angle-right"></i></a>
+    <a href="aboutus.html">About<i class="fa-solid fa-angle-right"></i></a>
+    <a href="contact.html">Contact<i class="fa-solid fa-angle-right"></i></a>
+  </ul>
+</div>     
+
+  
+<header>
+  <div class="top-info">
+    <i class="fa-solid fa-tags"></i>
+    <span>40% off all products. Use code: TPSI0922</span>
+  </div>
+
+  <div class="navbar container">
+      <div class="navbar-logo">
+        <img src="assets/img/logo.svg">
+      </div>
+
+      <div class="navbar-menu">
+        <ul>
+          <a href="#" class="active">Shop</a>
+          <a href="aboutus.html">About</a>
+          <a href="contact.html">Contact</a>
+        </ul>
+      </div>
+
+      <div class="navbar-buttons">
+        <div class="cartBtn">
+          <div class="cartBtnPrice">
+            <span>0.00€</span>
+          </div>
+          <div class="cartBtnItems">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="numItems">0</span>
+          </div>
+        </div>
+
+        <div class="navMobileBtn">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>    
+  </div>
+</header>   */}
+
+
+
+
+
 {/* <div class="mobile-nav-backfilter"></div>
     <div class="mobile-navmenu">
       <div class="mobile-navmenu-exit">

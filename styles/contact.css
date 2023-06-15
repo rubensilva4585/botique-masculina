@@ -1,0 +1,103 @@
+
+/*  #region ==== Contact Us ==== */
+
+.contact {
+    color: var(--white);
+    background-color: var(--black);
+    padding: 40px 0px 80px 0px;
+}
+
+.contact-header {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.contact-form-main {
+    display: grid;
+    gap: 50px;
+}
+
+.contact-form {
+    width: 100%;
+    height: 100%;
+}
+
+.contact-form input {
+    width: 100%;
+    padding: 5px 5px 15px 5px;
+    margin-bottom: 15px;
+    background-color: transparent;
+    border: 1px solid var(--slate-400);
+    color: var(--white);
+    transition: all 0.5s ease;
+}
+
+.contact-form input:focus {
+    outline: none;
+    border: 1px solid var(--white);
+}
+
+.contact-form textarea {
+    width: 100%;
+    padding: 5px 5px 40px 5px;
+    margin-bottom: 15px;
+    background-color: transparent;
+    border: 1px solid var(--slate-400);
+    color: var(--white);
+    resize: none;
+    transition: all 0.5s ease;
+}
+
+.contact-form textarea:focus {
+    outline: none;
+    border: 1px solid var(--white);
+}
+
+.contact-form button {
+    padding: 10px 20px;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid var(--white);
+    color: var(--white);
+    border-radius: 0px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.contact-form button:hover {
+    background-color: var(--white);
+    color: var(--black);
+    transition: all 0.5s ease;
+}
+
+.contact-map {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.contact-map iframe {
+    width: 100%;
+    height: 260px;
+}
+
+.contact-map p {
+    color: var(--white);
+    font-size: .875rem;
+    margin-top: 15px;
+}
+
+
+/* #endregion Contact Us  */
+
+
+
+@media (min-width: 576px) {
+    .contact-form-main {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-form button {
+        width: fit-content;
+    }
+}
