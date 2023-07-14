@@ -3,7 +3,7 @@
 
 .checkout-grid {
     display: grid;
-    gap: 10px;
+    gap: 30px;
 }
 
 .item-list {
@@ -11,45 +11,41 @@
     flex-direction: column;
     gap: 5px;
     padding: 10px 0;
+    background-color: white;
+    border-radius: 10px;
 }
 
-.item-card {
+.cart-column-names{
     display: flex;
-    height: 150px;
-    border: 1px var(--slate-300) solid;
-    border-radius: 15px;
-    margin-top: 10px;
-    overflow: hidden;
+    justify-content: space-around;
+    height: 40px;
+    align-items: center;
+    text-align: center;
+
+    border-bottom: 1px solid var(--slate-200);
+    margin: 0 10px;
 }
 
-.edit-container>.fa-trash-can {}
-
-.checkout-product-image>img {
-    width: 150px;
+.cart-column-names>*{
+    width: 20%;
 }
 
-.product-details {
-    display: flex;
-    width: 100%;
-    text-align: justify;
-    justify-content: space-between;
-    padding: 1rem;
+.product{
+    display: grid;
+    /*justify-content: space-between;*/
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    grid-template-areas: "image name btns"
+    "image price btns";
 }
 
-.edit-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: end;
-    width: fit-content;
+.product>*{
+    width: 20%;
 }
 
-.details-container {
-    width: 100%;
-}
-
-.product-details>.price {
-    text-align: end;
+.item-list:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .product-quantity-container {
@@ -58,23 +54,40 @@
     justify-content: center;
     width: fit-content;
     height: fit-content;
-    border-radius: 5px;
+    border-radius: 8px;
     overflow: hidden;
+    margin: 0 auto;
+    grid-area: btns;
+    justify-self: end;
 }
 
 .product-quantity-container input {
     border: 0;
     text-align: center;
-    width: 25px;
-    padding: 5px 0;
+    width: 30px;
+    padding: 3px 0;
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield;
+}
+
+.product-quantity-container input:focus{
+    outline: none;
 }
 
 .product-quantity-container button {
-    background-color: var(--color-primary);
-    padding: 2px 6px;
+    background-color: var(--slate-300);
+    padding: 7px 4px;
     border: 0;
     cursor: pointer;
-    color: white;
+    font-size: 0.7rem;
+    color: black;
+}
+
+.product-quantity-container button:hover{
+    color:white;
+    background-color: var(--slate-900);
+    transition: ease-in 0.1s;
 }
 
 .check-coupon-container {
@@ -86,20 +99,20 @@
     overflow: hidden;
     border-radius: 10px;
     display: flex;
+    justify-content: center;
 }
 
 .check-coupon-container>form>.btn {
-    background-color: var(--color-primary);
+    background-color: var(--slate-900);
     padding: 10px 20px;
     border: 0;
     cursor: pointer;
     color: white;
-
 }
 
 .input-coupon {
     border: 0;
-    width: 70%;
+    min-width: 70%;
     height: 100%;
     padding: 0 0 0 10px;
 }
@@ -108,7 +121,9 @@
     outline: 0;
 }
 
-.payment-info {}
+.payment-info {
+
+}
 
 .order-total-container {
     display: flex;
@@ -126,35 +141,79 @@
 .order-total-values {
     display: flex;
     flex-direction: column;
+
     text-align: right;
+
     row-gap: 5px;
 }
 
+.product-price{
+    grid-area: price;
+    min-width: 80px;
+}
 
+.product-name{
+    grid-area: name;
+
+    min-width: 80px;
+}
+
+.product-image{
+    grid-area: image;
+
+    align-self: center;
+
+    overflow: hidden;
+    min-height: 100%;
+}
+
+.product-image>img{
+    width: 100%;
+}
+
+.hidden{
+    display: none;
+}
 /* #endregion Cart */
 
 
 
 @media (min-width: 576px) {
-    .contact-form-main {
-        grid-template-columns: repeat(2, 1fr);
+    .product-image{
+        height: 90px;
     }
 
-    .contact-form button {
-        width: fit-content;
+    .product-quantity-container button {
+        padding: 10px 15px;
+    }
+    .product-quantity-container input {
+        width: 50px;
+    }
+    .product-quantity-container {
+        flex-direction: row;
+    }
+    .product{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        text-align: center;
+        padding: 10px;
     }
 }
 
 
 
 @media (min-width: 992px) {
-    .item-list {
-        max-width: 100%;
+
+
+    .product-image{
+        height: 140px;
     }
 
     .checkout-grid {
         display: grid;
-        grid-template-areas: "items items payment";
+        grid-template-areas: "items payment";
     }
 
     .item-list {
@@ -162,10 +221,10 @@
     }
 
     .payment-info {
-        margin-top: 2rem;
         grid-area: payment;
-        position: sticky;
         top: 4rem;
-        height: 100vh;
+        margin-top: 2rem;
+
+        position: sticky;
     }
 }
