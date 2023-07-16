@@ -6,7 +6,7 @@ export class Product{
     #price
     #quantity
 
-    constructor(id, name, description, image, price, quantity){
+    constructor({id, name, description, image, price, quantity}){
         this.#id=id
         this.#name=name
         this.#description=description
@@ -45,5 +45,9 @@ export class Product{
         if(this.#quantity-orderedQnt<0)
             return "Quantity exceeds the stock."
         this.#quantity-=orderedQnt
+    }
+
+    stringify() {
+        return JSON.stringify({['#id']: this.#id,['#name']: this.#name,['#description']:this.#description,['#image']:this.#image,['#price']:this.#price,['#quantity']:this.#quantity})
     }
 }
