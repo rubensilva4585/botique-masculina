@@ -15,31 +15,31 @@ export class Product{
         this.#quantity=quantity
     }
 
-    getID(){
+    get id(){
         return this.#id
     }
 
-    getName(){
+    get name(){
         return this.#name
     }
 
-    getDescription(){
+    get description(){
         return this.#description
     }
 
-    getImage(){
+    get image(){
         return  this.#image
     }
 
-    getPrice(){
+    get price(){
         return this.#price
     }
 
-    getQuantity(){
+    get quantity(){
         return this.#quantity
     }
 
-    setQuantity(orderedQnt){
+    set quantity(orderedQnt){
         if(orderedQnt<=0)
             return "Can't purchase that amount."
         if(this.#quantity-orderedQnt<0)
@@ -48,6 +48,7 @@ export class Product{
     }
 
     stringify() {
-        return JSON.stringify({['#id']: this.#id,['#name']: this.#name,['#description']:this.#description,['#image']:this.#image,['#price']:this.#price,['#quantity']:this.#quantity})
-    }
+        return JSON.stringify({
+            id: this.#id, name: this.#name, description: this.#description, image: this.#image, price: this.#price, quantity: this.#quantity
+    })}
 }

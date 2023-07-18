@@ -13,6 +13,7 @@
     padding: 10px 0;
     background-color: white;
     border-radius: 10px;
+    min-width: 30vw;
 }
 
 .cart-column-names{
@@ -169,6 +170,7 @@
 
 .product-image>img{
     width: 100%;
+    object-fit: scale-down;
 }
 
 .hidden{
