@@ -4,7 +4,7 @@ import './style.css'
 import { setNavBar } from './components/navbar/navbar'
 import {createCartGrid} from './components/cart/cart'
 import {createPageTitle} from "./components/createPageTitle.js"
-import {Cart} from "./models/Cart.js"
+import {Cart} from "./models/Cart.js";
 
 setNavBar()
 

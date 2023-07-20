@@ -1,7 +1,6 @@
 import {} from "./Product.js"
 import {dispatchCartChangeEvent} from "../events/dispatchCartChangeEvent.js";
-import {getProductById} from "../utils/getProductById.js";
-import {cart} from "../pageMain.js";
+import {getProductById} from "../utils/getProductById.js"
 
 export class Cart {
     constructor(products = [], coupon = ""){
