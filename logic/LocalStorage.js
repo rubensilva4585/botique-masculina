@@ -1,5 +1,3 @@
-import {getAllProductsAPI} from "../services/getProductsAPI.js";
-
 export async function saveProductsOnLocalStorage(allProducts){
     allProducts = allProducts.map((product)=>product.stringify())
     localStorage.setItem("storedProducts",JSON.stringify(allProducts))

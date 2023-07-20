@@ -8,6 +8,7 @@ export async function getAllProductsAPI() {
         }
         catch (error){
                 console.log('There was an error getting products')
+                throw error;
         }
 }
 
