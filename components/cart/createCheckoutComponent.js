@@ -1,4 +1,4 @@
-import {checkCouponAPI} from "../../services/ProductsAPI.js";
+import {checkCouponAPI, checkOutAPI} from "../../services/ProductsAPI.js";
 import {cart} from "../../pageCart.js";
 
 export function createCheckoutComponent(){
@@ -11,7 +11,7 @@ export function createCheckoutComponent(){
             <button id="btnCheckCoupon" class="btn" type="submit">Check</button>
           </form>
         </div>
-        <div id="statusMsg" class="status-msg"></div>
+        <div id="statusMsgCoupon" class="status-msg"></div>
         <div class="container order-total-container">
           <div class="order-total-text">
             <p>Sub-total</p>
@@ -28,9 +28,9 @@ export function createCheckoutComponent(){
     `
     const formCheckCoupon= checkoutContainerEl.querySelector('#formCoupon')
     const inCouponID= checkoutContainerEl.querySelector('#couponID')
-    const statusMsg= checkoutContainerEl.querySelector('#statusMsg')
+    const statusMsgCoupon= checkoutContainerEl.querySelector('#statusMsgCoupon')
 
-    // const cartSubTotal = checkoutContainerEl.querySelector('#cartSubTotal')
+    const cartSubTotal = checkoutContainerEl.querySelector('#cartSubTotal')
     const cartDiscount = checkoutContainerEl.querySelector('#cartDiscount')
     const cartTotal = checkoutContainerEl.querySelector('#cartTotal')
     const btnCheckout= checkoutContainerEl.querySelector('#btnCheckout')
@@ -40,21 +40,44 @@ export function createCheckoutComponent(){
             formCheckCoupon.disabled=true
             checkCouponAPI(inCouponID.value).then((response)=>{
                 if(response.success){
-                    statusMsg.classList.remove('invalid')
-                    statusMsg.classList.add('valid')
-                    statusMsg.textContent = response.message
-                    cart.coupon = inCouponID.value
+                    statusMsgCoupon.classList.remove('invalid')
+                    statusMsgCoupon.classList.add('valid')
+                    statusMsgCoupon.textContent = response.message
+                    cart.setCoupon(inCouponID.value)
                     cartDiscount.textContent = response.discount + '%'
+                    cartTotal.textContent = (cart._getCartTotalPrice() *( 1 - parseInt(response.discount) / 100)).toFixed(2) + '$'
                 }
                 else{
-                    statusMsg.classList.remove('valid')
-                    statusMsg.classList.add('invalid')
-                    statusMsg.textContent = response.error
+                    cart.setCoupon("")
+                    statusMsgCoupon.classList.remove('valid')
+                    statusMsgCoupon.classList.add('invalid')
+                    statusMsgCoupon.textContent = response.error
                     cartDiscount.textContent = '0%'
+                    cartTotal.textContent = (cart._getCartTotalPrice()).toFixed(2) + '$'
                 }
             })
         }
+    })
 
+    btnCheckout.addEventListener('click',()=>{
+        checkOutAPI(cart).then((response)=>{
+            if (response.success){
+                alert(response.message)
+                cart.clearCart()
+                window.location.href = '/index.html'
+            }
+            else{
+                cart.setCoupon("")
+                alert(response.error)
+            }
+        })
+    })
+
+    document.addEventListener('CartChange',(e)=>{
+        cartSubTotal.textContent = e.detail.totalPrice.toFixed(2) + '$'
+        cart.coupon === "" ?
+            cartTotal.textContent = e.detail.totalPrice.toFixed(2) + '$' :
+            cartTotal.textContent = (e.detail.totalPrice * ( 1 - parseInt(cartDiscount.textContent.replace('$','')) / 100)).toFixed(2) + '$'
     })
 
     return checkoutContainerEl

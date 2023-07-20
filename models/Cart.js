@@ -8,6 +8,10 @@ export class Cart {
             this.coupon = coupon
     }
 
+    setCoupon(coupon){
+        this.coupon = coupon
+        this.saveOnLocalStorage()
+    }
     addProduct(id, quantity){
         const productInCart = this.products.find((productInCart)=> productInCart.id === id)
         if(productInCart)

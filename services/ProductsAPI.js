@@ -31,3 +31,20 @@ export async function checkCouponAPI(coupon){
         }
 }
 
+export async function checkOutAPI(cart){
+        try {
+                const response = await fetch(urlApi + '/checkout', {
+                        method: "POST",
+                        headers: {
+                                "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(cart)
+                });
+                return response.json()
+        }
+        catch (error){
+                console.log('There was an error checking your coupon.')
+                throw error;
+        }
+}
+
