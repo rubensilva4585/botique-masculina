@@ -28,11 +28,11 @@ export function showProductModal(product){
                     <h6 class="product-price">$${product.price}</h6>
                     <div class="buttons-addcart">
                         <div class="product-quantity-container">
-                            <button class="btn" type="button">-</button>
+                            <button id="btn_rmv" class="btn" type="button">-</button>
                             <input id="product-quantity-input" type="number" min="1" max="100" value=1>
-                            <button class="btn" type="button">+</button>
+                            <button id="btn_add" class="btn" type="button">+</button>
                         </div>
-                        <button class="btn-addCart" type="button">Add Cart</button>
+                        <button id="btn-addCart" class="btn-addCart" type="button">Add Cart</button>
                     </div>
                 </div>
             </div>
@@ -47,6 +47,25 @@ export function showProductModal(product){
     buttonCloseModal.addEventListener('click', ()=> {
         productModal.remove();
     })
+
+    const btnAdd = productModal.querySelector("#btn_add")
+    const btnRmv = productModal.querySelector("#btn_rmv")
+    const qntInput = productModal.querySelector("#product-quantity-input")
+    btnAdd.addEventListener('click', ()=> {
+        qntInput.value++;
+    })
+    btnRmv.addEventListener('click', ()=> {
+        if(qntInput.value > 1){
+            qntInput.value--;
+        }
+    })
+
+    const btnAddCart = productModal.querySelector("#btn-addCart")
+    btnAddCart.addEventListener('click', ()=> {
+        // Funcao add carrinho (product.id, qntInput.value)
+        console.log(qntInput.value + "   ID: "+ product.id)
+        productModal.remove();
+    })  
 
     body.appendChild(productModal);
 }
