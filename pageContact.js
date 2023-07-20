@@ -1,11 +1,16 @@
 import './reset.css'
 import './style.css'
-
 import { setNavBar } from './components/navbar/navbar'
-import { } from './components/contact/contact'
+import { setFooter } from './components/footer/footer'
+import { createTeamGrid } from './components/contact/teamGrid'
 
 
-// import { getRandomUserAPI } from './services/getUserAPI'
+setNavBar();
 
-setNavBar()
+const main = document.querySelector('main');
 
+const teamGrid = await createTeamGrid();
+main.appendChild(teamGrid);
+
+
+setFooter();
