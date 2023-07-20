@@ -34,3 +34,5 @@ export function createProductCard(product){
     // })
     return productCardEl
 }
+
+
