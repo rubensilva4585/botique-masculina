@@ -1,4 +1,3 @@
-import {addProductToCartPage} from '../cart/cartRow.js'
 import {showProductModal} from './productModal.js'
 
 const productsGridEl = document.querySelector('.products-grid')

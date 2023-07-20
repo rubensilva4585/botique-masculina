@@ -11,7 +11,7 @@ export class Cart {
     addProduct(id, quantity){
         const productInCart = this.products.find((productInCart)=> productInCart.id === id)
         if(productInCart)
-            productInCart.quantity += parseInt(quantity)
+            productInCart.quantity = parseInt(quantity) + parseInt(productInCart.quantity)
         else
             this.products.push({id, quantity})
 
@@ -53,7 +53,7 @@ export class Cart {
     _getCartTotalPrice(){
         let totalPrice= 0
         for(const product of this.products){
-            totalPrice += parseFloat(getProductById(product.id).price)
+            totalPrice += parseFloat(getProductById(product.id).price)*parseInt(product.quantity)
         }
         return totalPrice
     }
