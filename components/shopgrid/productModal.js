@@ -1,5 +1,5 @@
 import '../../styles/productModal.css'
-
+import {cart} from "../../pageMain.js";
 export function showProductModal(product){
     const body = document.querySelector('body')
 
@@ -62,7 +62,7 @@ export function showProductModal(product){
 
     const btnAddCart = productModal.querySelector("#btn-addCart")
     btnAddCart.addEventListener('click', ()=> {
-        // Funcao add carrinho (product.id, qntInput.value)
+        cart.addProduct(product.id, qntInput.value)
         productModal.remove();
     })  
 

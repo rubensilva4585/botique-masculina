@@ -6,8 +6,13 @@ import { setFooter } from "./components/footer/footer.js";
 import {createShopGrid} from './components/shopgrid/shop'
 import {createProductCard} from "./components/shopgrid/productCard.js";
 import {getAllProducts} from "./logic/getAllProducts.js";
+import {Cart} from "./models/Cart.js";
 
 setNavBar()
+console.log('CONA')
+export const cart = new Cart()
+cart.getFromLocalStorage()
+console.log(cart)
 
 document.querySelector('main').appendChild(createShopGrid())
 

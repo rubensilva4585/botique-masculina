@@ -1,4 +1,4 @@
-export async function saveProductsOnLocalStorage(allProducts){
+export function saveProductsOnLocalStorage(allProducts){
     allProducts = allProducts.map((product)=>product.stringify())
     localStorage.setItem("storedProducts",JSON.stringify(allProducts))
 }

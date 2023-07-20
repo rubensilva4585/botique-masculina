@@ -1,4 +1,4 @@
-import { getAllProductsAPI } from "../services/getProductsAPI.js"
+import { getAllProductsAPI } from "../services/ProductsAPI.js"
 import { saveProductsOnLocalStorage, getProductsFromLocalStorage } from "./LocalStorage.js"
 
 export async function getAllProducts(refresh = false)
