@@ -43,10 +43,10 @@ footer{
     text-decoration: none;
 }
 
-.footer-grid .social ul li{
+.footer-grid .f-social ul li{
     display: inline-block;
 }
-.footer-grid .social i{
+.footer-grid .f-social i{
     color: var(--slate-400);
     border: 1px solid var(--slate-400);
     border-radius: 50%;
@@ -57,7 +57,7 @@ footer{
     justify-content: center;
     align-items: center;
 }
-.footer-grid .social i:hover{
+.footer-grid .f-social i:hover{
     color: var(--slate-200);
     text-decoration: none;
 }
