@@ -1,8 +1,10 @@
 import {Product} from "../models/Product.js"
 
+const urlApi = "http://127.0.0.1:3333";
+
 export async function getAllProductsAPI() {
         try {
-                let response = await fetch('http://127.0.0.1:3333/products')
+                let response = await fetch(urlApi + '/products')
                 let data = await response.json()
                 return data.map((product) => new Product(product))
         }
@@ -14,7 +16,7 @@ export async function getAllProductsAPI() {
 
 export async function checkCouponAPI(coupon){
         try {
-                const response = await fetch('http://127.0.0.1:3333/check-coupon', {
+                const response = await fetch(urlApi + '/check-coupon', {
                         method: "POST",
                         headers: {
                                 "Content-Type": "application/json",
