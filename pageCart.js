@@ -8,14 +8,11 @@ import {Cart} from "./models/Cart.js";
 
 setNavBar()
 
-const cart = new Cart()
+export const cart = new Cart()
 cart.getFromLocalStorage()
 
-const containerEl = document.createElement('div')
-containerEl.classList.add('container')
-document.querySelector('main').appendChild(containerEl)
-containerEl.appendChild(createPageTitle('Your Cart'))
-containerEl.appendChild(createCartGrid())
+document.querySelector('main').appendChild(createCartGrid())
+
 
 
 // //testes do cart

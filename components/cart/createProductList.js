@@ -1,3 +1,7 @@
+
+import {getProductById} from "../../utils/getProductById.js";
+import {cart} from "../../pageCart.js";
+import {addProductToCartPage} from "./cartRow.js";
 export function createProductList(){
     const productListEl = document.createElement('div')
     productListEl.classList.add('item-list')
@@ -10,5 +14,8 @@ export function createProductList(){
             <span class="product-total">Total</span>
         </div>
     `
+    cart.products.map((product)=>{
+        productListEl.appendChild(addProductToCartPage(getProductById(product.id),product.quantity))
+    })
     return productListEl
 }

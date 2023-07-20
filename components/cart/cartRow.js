@@ -1,5 +1,6 @@
-export function addProductToCartPage(product){
-    console.log(product.price)
+import {cart} from "../../pageCart.js";
+
+export function addProductToCartPage(product, quantity){
     const productRowEl = document.createElement('div')
     productRowEl.classList.add('product')
     productRowEl.innerHTML=`
@@ -14,18 +15,34 @@ export function addProductToCartPage(product){
       </div>
       <div class="product-right">
         <div class="product-quantity-container">
-          <button class="btn" type="button">-</button>
-          <input id="product-quantity-input" type="number" min="1" max="100" value=1>
-          <button class="btn" type="button">+</button>
-        </div>
-        <button class="btn-delete" type="button"><i class="fa-solid fa-trash-can"></i></button>
+                            <button id="btn_rmv" class="btn" type="button">-</button>
+                            <input id="product-quantity-input" type="number" min="1" max="100" value=${quantity}>
+                            <button id="btn_add" class="btn" type="button">+</button>
+                        </div>
+        <button id="btn-delete" class="btn-delete" type="button"><i class="fa-solid fa-trash-can"></i></button>
       </div>
     `
-          // <div class="product-total hidden"></div>
-    const productQuantityEl = productRowEl.querySelector('#product-quantity-input')
-    const totalProductPrice = productRowEl.querySelector('.product-total')
-    productQuantityEl.addEventListener('input', ()=>{
-        totalProductPrice.text = parseInt(product.price)*parseInt(productQuantityEl.text)
+    const btnDel = productRowEl.querySelector("#btn-delete")
+    const btnAdd = productRowEl.querySelector("#btn_add")
+    const btnRmv = productRowEl.querySelector("#btn_rmv")
+    const qntInput = productRowEl.querySelector("#product-quantity-input")
+    btnAdd.addEventListener('click', ()=> {
+        qntInput.value++
+        handleChangeInput()
+    })
+    btnRmv.addEventListener('click', ()=> {
+        if(qntInput.value > 1){
+            qntInput.value--
+            handleChangeInput()
+        }
+    })
+    qntInput.addEventListener('change',handleChangeInput)
+    function handleChangeInput(){
+        cart.updateQuantity(product.id, qntInput.value)
+    }
+    btnDel.addEventListener('click', ()=>{
+        cart.removeProduct(product.id)
+        productRowEl.remove()
     })
 
     return productRowEl
