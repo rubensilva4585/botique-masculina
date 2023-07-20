@@ -1,4 +1,7 @@
 import '../../styles/navbar.css'
+import { dispatchOpenMobileNavbarEvent } from '../../events/dispatchOpenMobileNavbarEvent.js'
+import { navbarButton } from './navbarButtons.js'
+
 
 export function setNavBar() {
     const body = document.querySelector('body')
@@ -13,7 +16,6 @@ export function setNavBar() {
     `
 
     header.appendChild(navBarTop())
-
     header.style.backgroundColor = "white";
 }
 
@@ -41,24 +43,8 @@ function navBarTop() {
     `
     checkActivePage(divNavbarLeft)
 
-    const divNavbarRight = document.createElement('div')
-    divNavbarRight.classList.add('navbar-buttons') 
-    divNavbarRight.innerHTML = `
-        <a href="cart.html" class="cartBtn">
-          <div class="cartBtnPrice">
-            <span>0.00€</span>
-          </div>
-          <div class="cartBtnItems">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span class="numItems">0</span>
-          </div>
-        </a>
-        <div class="navMobileBtn">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-    `
     divNavbar.appendChild(divNavbarLeft)
-    divNavbar.appendChild(divNavbarRight)
+    divNavbar.appendChild(navbarButton())
 
     // botao abrir menu mobile
     const navMobileBtn = divNavbar.querySelector(".navMobileBtn")
@@ -103,7 +89,6 @@ function navBarMobile() {
         backfilter.classList.add("showbackfilter")
     });
 
-
     return div
 }
 
@@ -122,21 +107,6 @@ function checkActivePage(div) {
       }
   })
 }
-
-
-
-/// EVENTO ABRIR MOBILE
-const dispatchOpenMobileNavbarEvent = () => {
-    const event = new CustomEvent('openMobileNavbar', {
-        detail: {
-          info: 'Pressionado botao para abrir mobile navbar',
-        }
-    })
-    document.dispatchEvent(event)
-}
-
-
-
 
 
 /// NAO APAGAR

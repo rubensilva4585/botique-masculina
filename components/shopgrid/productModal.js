@@ -63,7 +63,6 @@ export function showProductModal(product){
     const btnAddCart = productModal.querySelector("#btn-addCart")
     btnAddCart.addEventListener('click', ()=> {
         // Funcao add carrinho (product.id, qntInput.value)
-        console.log(qntInput.value + "   ID: "+ product.id)
         productModal.remove();
     })  
 
