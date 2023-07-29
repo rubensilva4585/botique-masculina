@@ -1,5 +1,6 @@
 import '../../styles/productModal.css'
 import {cart} from "../../pageMain.js";
+import {inputKeyIsNumber} from "../../utils/inputKeyIsNumber.js";
 export function showProductModal(product){
     const body = document.querySelector('body')
 
@@ -51,9 +52,11 @@ export function showProductModal(product){
     const btnAdd = productModal.querySelector("#btn_add")
     const btnRmv = productModal.querySelector("#btn_rmv")
     const qntInput = productModal.querySelector("#product-quantity-input")
+
     btnAdd.addEventListener('click', ()=> {
         qntInput.value++;
     })
+
     btnRmv.addEventListener('click', ()=> {
         if(qntInput.value > 1){
             qntInput.value--;
@@ -64,7 +67,12 @@ export function showProductModal(product){
     btnAddCart.addEventListener('click', ()=> {
         cart.addProduct(product.id, qntInput.value)
         productModal.remove();
-    })  
+    })
+
+    qntInput.addEventListener('keydown',(e)=>{
+        if(!inputKeyIsNumber(e.keyCode))
+            e.preventDefault()
+    })
 
     body.appendChild(productModal);
 }

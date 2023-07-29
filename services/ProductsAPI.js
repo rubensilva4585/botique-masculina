@@ -9,9 +9,16 @@ export async function getAllProductsAPI() {
                 return data.map((product) => new Product(product))
         }
         catch (error){
-                console.log('There was an error getting products.')
-                throw error;
+                if (response.status===500){
+                        alert(error.message)
+                        throw new Error('We are sorry. There was an internal server error, please try reloading the page.')
+                }
         }
+        let response = await fetch(urlApi + '/products')
+
+        console.log(await response)
+        let data = await response.json()
+        return data.map((product) => new Product(product))
 }
 
 export async function checkCouponAPI(coupon){

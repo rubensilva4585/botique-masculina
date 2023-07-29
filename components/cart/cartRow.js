@@ -1,4 +1,5 @@
 import {cart} from "../../pageCart.js";
+import {inputKeyIsNumber} from "../../utils/inputKeyIsNumber.js";
 
 export function addProductToCartPage(product, quantity){
     const productRowEl = document.createElement('div')
@@ -26,20 +27,31 @@ export function addProductToCartPage(product, quantity){
     const btnAdd = productRowEl.querySelector("#btn_add")
     const btnRmv = productRowEl.querySelector("#btn_rmv")
     const qntInput = productRowEl.querySelector("#product-quantity-input")
+
     btnAdd.addEventListener('click', ()=> {
         qntInput.value++
         handleChangeInput()
     })
+
     btnRmv.addEventListener('click', ()=> {
         if(qntInput.value > 1){
             qntInput.value--
             handleChangeInput()
         }
     })
-    qntInput.addEventListener('change',handleChangeInput)
+
+    qntInput.addEventListener('keydown',(e)=>{
+        if(!inputKeyIsNumber(e.keyCode))
+            e.preventDefault()
+    })
+
+    qntInput.addEventListener('input', handleChangeInput)
     function handleChangeInput(){
+        if(isNaN(qntInput.value) || qntInput.value==="")
+            qntInput.value='1'
         cart.updateQuantity(product.id, qntInput.value)
     }
+
     btnDel.addEventListener('click', ()=>{
         cart.removeProduct(product.id)
         productRowEl.remove()

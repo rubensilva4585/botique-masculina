@@ -21,7 +21,7 @@ export function navbarButton() {
     const spanNumItems = navbarButtons.querySelector(".cartBtnItems .numItems")
 
     document.addEventListener('CartChange', (e) => {
-        spanPrice.textContent = e.detail.totalPrice.toFixed(2) + "€"
+        spanPrice.textContent = e.detail.totalPrice.toFixed(2) + "$"
         spanNumItems.textContent = e.detail.quantity
     });
 

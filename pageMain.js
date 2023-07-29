@@ -11,7 +11,7 @@ import {Cart} from "./models/Cart.js";
 setNavBar()
 
 export const cart = new Cart()
-cart.getFromLocalStorage()
+cart.loadFromLocalStorage()
 
 document.querySelector('main').appendChild(createShopGrid())
 

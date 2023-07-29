@@ -13,6 +13,8 @@ export class Cart {
         this.saveOnLocalStorage()
     }
     addProduct(id, quantity){
+        if (quantity > parseInt(this.products[id].quantity))
+            return
         const productInCart = this.products.find((productInCart)=> productInCart.id === id)
         if(productInCart)
             productInCart.quantity = parseInt(quantity) + parseInt(productInCart.quantity)
@@ -65,7 +67,7 @@ export class Cart {
         localStorage.setItem('cart',JSON.stringify(this))
     }
 
-    getFromLocalStorage(){
+    loadFromLocalStorage(){
         const cartLocalStorage = JSON.parse(localStorage.getItem('cart'))
         if (cartLocalStorage){
             const {products, coupon} = cartLocalStorage
