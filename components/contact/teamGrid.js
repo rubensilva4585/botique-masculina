@@ -26,5 +26,5 @@ export async function createTeamGrid() {
     teamContent.appendChild(teamCard);
   });
 
-  return teamGrid;
+  document.querySelector("main").append(teamGrid);
 }
