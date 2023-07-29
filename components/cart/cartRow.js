@@ -50,7 +50,7 @@ export function addProductToCartPage(product, quantity){
     qntInput.addEventListener('input', handleChangeInput)
     function handleChangeInput(){
         isNaN(qntInput.value) || qntInput.value==="" && (qntInput.value='1')
-        product.checkStock(qntInput.value) ? cart.updateQuantity(product, qntInput.value) : qntInput.value--
+        product.checkStock(qntInput.value) ? cart.updateQuantity(product, qntInput.value) : qntInput.value = product.quantity
     }
 
     btnDel.addEventListener('click', ()=>{
