@@ -1,4 +1,4 @@
-import {} from "./Product.js"
+import {Product} from "./Product.js"
 import {dispatchCartChangeEvent} from "../events/dispatchCartChangeEvent.js";
 import {getProductById} from "../utils/getProductById.js"
 
@@ -16,21 +16,11 @@ export class Cart {
         const productInCart = this.products.find((productInCart)=> productInCart.id === product.id)
 
         if(productInCart){
-            if( parseInt(product.quantity) > parseInt(quantityToAdd) + parseInt(productInCart.quantity) ){
-                productInCart.quantity = parseInt(quantityToAdd) + parseInt(productInCart.quantity)
-            }
-            else{
-                alert(`We are sorry, only ${product.quantity} units in stock.`)
-                return
-            }
-        }
-        else if (parseInt(product.quantity) > parseInt(quantityToAdd)){
-            this.products.push({id: product.id, quantity: quantityToAdd})
-        }
-        else{
-            alert(`We are sorry, only ${product.quantity} units in stock.`)
-            return
-        }
+            const product = new Product(getProductById(productInCart.id))
+            product.checkStock(parseInt(quantityToAdd) + parseInt(productInCart.quantity)) &&
+            (productInCart.quantity = parseInt(quantityToAdd) + parseInt(productInCart.quantity))}
+
+        else product.checkStock(quantityToAdd) && (this.products.push({id: product.id, quantity: quantityToAdd}))
 
         dispatchCartChangeEvent(this._getTotalQuantity(), this._getCartTotalPrice())
         this.saveOnLocalStorage()
@@ -52,9 +42,9 @@ export class Cart {
         this.saveOnLocalStorage()
     }
 
-    updateQuantity(id, quantity){
-        this.products[this.products.findIndex(product => product.id === id)].quantity = quantity
-        dispatchCartChangeEvent(this._getTotalQuantity(), this._getCartTotalPrice())
+    updateQuantity(product, newQuantity){
+        this.products[this.products.findIndex(productInCart => productInCart.id === product.id)].quantity = newQuantity
+        dispatchCartChangeEvent(this._getTotalQuantity(),this._getCartTotalPrice())
         this.saveOnLocalStorage()
     }
 

@@ -1,7 +1,9 @@
 import {cart} from "../../pageCart.js";
 import {inputKeyIsNumber} from "../../utils/inputKeyIsNumber.js";
+import {Product} from "../../models/Product.js";
 
 export function addProductToCartPage(product, quantity){
+    product = new Product(product)
     const productRowEl = document.createElement('div')
     productRowEl.classList.add('product')
     productRowEl.innerHTML=`
@@ -47,9 +49,8 @@ export function addProductToCartPage(product, quantity){
 
     qntInput.addEventListener('input', handleChangeInput)
     function handleChangeInput(){
-        if(isNaN(qntInput.value) || qntInput.value==="")
-            qntInput.value='1'
-        cart.updateQuantity(product.id, qntInput.value)
+        isNaN(qntInput.value) || qntInput.value==="" && (qntInput.value='1')
+        product.checkStock(qntInput.value) ? cart.updateQuantity(product, qntInput.value) : qntInput.value--
     }
 
     btnDel.addEventListener('click', ()=>{

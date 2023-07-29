@@ -52,6 +52,10 @@ export class Product{
         this.#quantity-=orderedQnt
     }
 
+    checkStock(quantityToOrder){
+        return this.#quantity >= quantityToOrder ? true : (alert(`We are sorry, only ${this.quantity} units in stock.`), false)
+    }
+
     stringify() {
         return JSON.stringify({
             id: this.#id, name: this.#name, description: this.#description, image: this.#image, price: this.#price, quantity: this.#quantity, rating: this.#rating
