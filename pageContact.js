@@ -1,16 +1,17 @@
 import './reset.css'
 import './style.css'
 import { setNavBar } from './components/navbar/navbar'
-import { setFooter } from './components/footer/footer'
+import { createContactFormGrid } from './components/contact/contactGrid'
 import { createTeamGrid } from './components/contact/teamGrid'
-
+import { setFooter } from './components/footer/footer'
+import { Cart } from './models/Cart'
 
 setNavBar();
 
-const main = document.querySelector('main');
+const cart = new Cart();
+cart.loadFromLocalStorage();
 
-const teamGrid = await createTeamGrid();
-main.appendChild(teamGrid);
-
+createContactFormGrid();
+createTeamGrid();
 
 setFooter();
