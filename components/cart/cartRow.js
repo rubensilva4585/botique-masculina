@@ -16,10 +16,10 @@ export function addProductToCartPage(product, quantity){
       </div>
       <div class="product-right">
         <div class="product-quantity-container">
-                            <button id="btn_rmv" class="btn" type="button">-</button>
-                            <input id="product-quantity-input" type="number" min="1" max="100" value=${quantity}>
-                            <button id="btn_add" class="btn" type="button">+</button>
-                        </div>
+          <button id="btn_rmv" class="btn" type="button">-</button>
+          <input id="product-quantity-input" type="number" min="1" max="100" value=${quantity}>
+          <button id="btn_add" class="btn" type="button">+</button>
+        </div>
         <button id="btn-delete" class="btn-delete" type="button"><i class="fa-solid fa-trash-can"></i></button>
       </div>
     `
