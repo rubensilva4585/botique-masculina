@@ -5,14 +5,16 @@ export class Product{
     #image
     #price
     #quantity
+    #rating
 
-    constructor({id, name, description, image, price, quantity}){
-        this.#id=id
-        this.#name=name
-        this.#description=description
-        this.#image=image
-        this.#price=price
-        this.#quantity=quantity
+    constructor({id, name, description, image, price, quantity, rating}){
+        this.#id = id
+        this.#name = name
+        this.#description = description
+        this.#image = image
+        this.#price = price
+        this.#quantity = quantity
+        this.#rating = rating
     }
 
     get id(){
@@ -38,6 +40,9 @@ export class Product{
     get quantity(){
         return this.#quantity
     }
+    get rating(){
+        return this.#rating
+    }
 
     set quantity(orderedQnt){
         if(orderedQnt<=0)
@@ -49,6 +54,6 @@ export class Product{
 
     stringify() {
         return JSON.stringify({
-            id: this.#id, name: this.#name, description: this.#description, image: this.#image, price: this.#price, quantity: this.#quantity
+            id: this.#id, name: this.#name, description: this.#description, image: this.#image, price: this.#price, quantity: this.#quantity, rating: this.#rating
     })}
 }

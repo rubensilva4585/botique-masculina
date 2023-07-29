@@ -12,14 +12,25 @@ export class Cart {
         this.coupon = coupon
         this.saveOnLocalStorage()
     }
-    addProduct(id, quantity){
-        if (quantity > parseInt(this.products[id].quantity))
+    addProduct(product, quantityToAdd){
+        const productInCart = this.products.find((productInCart)=> productInCart.id === product.id)
+
+        if(productInCart){
+            if( parseInt(product.quantity) > parseInt(quantityToAdd) + parseInt(productInCart.quantity) ){
+                productInCart.quantity = parseInt(quantityToAdd) + parseInt(productInCart.quantity)
+            }
+            else{
+                alert(`We are sorry, only ${product.quantity} units in stock.`)
+                return
+            }
+        }
+        else if (parseInt(product.quantity) > parseInt(quantityToAdd)){
+            this.products.push({id: product.id, quantity: quantityToAdd})
+        }
+        else{
+            alert(`We are sorry, only ${product.quantity} units in stock.`)
             return
-        const productInCart = this.products.find((productInCart)=> productInCart.id === id)
-        if(productInCart)
-            productInCart.quantity = parseInt(quantity) + parseInt(productInCart.quantity)
-        else
-            this.products.push({id, quantity})
+        }
 
         dispatchCartChangeEvent(this._getTotalQuantity(), this._getCartTotalPrice())
         this.saveOnLocalStorage()
