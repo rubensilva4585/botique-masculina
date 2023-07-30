@@ -1,5 +1,3 @@
-import '../../styles/contact.css';
-
 export function createTeamCard(user, job) {
     const teamCard = document.createElement('div');
     teamCard.classList.add('team-member');

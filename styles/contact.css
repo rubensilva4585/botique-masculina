@@ -1,13 +1,13 @@
 /*  #region ==== Contact Us ==== */
 
-.contact-carousel {
+.contact-banner {
     width: 100%;
     height: 60vh;
     position: relative;
     overflow: hidden;
 }
 
-.contact-carousel-image {
+.contact-banner-image {
     position: absolute;
     top: 0;
     left: 0;
@@ -17,7 +17,7 @@
     transform: scale(1.1);
 }
 
-.contact-carousel-static {
+.contact-banner-static {
     position: absolute;
     top: 10%;
     left: 10%;
@@ -33,23 +33,23 @@
     transition: box-shadow 0.5s ease;
 }
 
-.contact-carousel-static:hover {
+.contact-banner-static:hover {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.5s ease;
 }
 
-.contact-carousel-static-content {
+.contact-banner-static-content {
     text-align: center;
     color: white;
 }
 
-.contact-carousel-static-content>h5 {
+.contact-banner-static-content>h5 {
     color: var(--slate-300);
     font-weight: 500;
     margin-bottom: 20px;
 }
 
-.contact-carousel-static-content button {
+.contact-banner-static-content button {
     padding: 10px 20px;
     margin-top: 30px;
     background-color: transparent;
@@ -61,7 +61,7 @@
     transition: border, color, background-color 0.5s ease;
 }
 
-.contact-carousel-static-content button:hover {
+.contact-banner-static-content button:hover {
     background-color: var(--white);
     color: var(--black);
     transition: border, color, background-color 0.5s ease;
@@ -257,6 +257,10 @@
 
 
 @media (min-width: 576px) {
+    .contact-banner-static-content {
+        text-align: left;
+    }
+
     .contact-form-main {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -273,7 +277,4 @@
         flex-direction: column;
     }
 
-    .contact-carousel-static-content {
-        text-align: left;
-    }
 }

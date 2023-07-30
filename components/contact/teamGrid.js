@@ -1,8 +1,6 @@
-import '../../style.css'
-import '../../styles/contact.css'
 import { getRandomUserAPI } from '../../services/getUserAPI.js'
 import { createTeamCard } from './teamCard.js'
-import {createPageTitle} from "../createPageTitle.js";
+import { createPageTitle } from "../createPageTitle.js";
 
 
 export async function createTeamGrid() {

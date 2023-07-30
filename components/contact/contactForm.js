@@ -1,15 +1,18 @@
 export function createContactForm() {
     const contactFormMain = document.createElement('div');
     contactFormMain.classList.add('contact-form-main');
+    contactFormMain.setAttribute('id', 'contact-form');
 
     const contactForm = document.createElement('form');
     contactForm.classList.add('contact-form');
+    // contactForm.addEventListener('submit', validateForm);
 
     const contactFormInputName = document.createElement('div');
     contactFormInputName.classList.add('contact-form-input');
 
     const contactFormInputNameInput = document.createElement('input');
     contactFormInputNameInput.setAttribute('type', 'text');
+    contactFormInputNameInput.setAttribute('name', 'name');
     contactFormInputNameInput.setAttribute('placeholder', 'Name');
 
     const contactFormInputNameSpan = document.createElement('span');
@@ -20,6 +23,7 @@ export function createContactForm() {
 
     const contactFormInputCompanyInput = document.createElement('input');
     contactFormInputCompanyInput.setAttribute('type', 'text');
+    contactFormInputCompanyInput.setAttribute('name', 'company');
     contactFormInputCompanyInput.setAttribute('placeholder', 'Company');
 
     const contactFormInputCompanySpan = document.createElement('span');
@@ -30,6 +34,7 @@ export function createContactForm() {
 
     const contactFormInputEmailInput = document.createElement('input');
     contactFormInputEmailInput.setAttribute('type', 'email');
+    contactFormInputCompanyInput.setAttribute('name', 'email');
     contactFormInputEmailInput.setAttribute('placeholder', 'Email');
 
     const contactFormInputEmailSpan = document.createElement('span');
@@ -39,6 +44,7 @@ export function createContactForm() {
     contactFormInputMessage.classList.add('contact-form-input');
 
     const contactFormInputMessageTextarea = document.createElement('textarea');
+    contactFormInputCompanyInput.setAttribute('name', 'message');
     contactFormInputMessageTextarea.setAttribute('placeholder', 'Write your message here...');
 
     const contactFormInputMessageSpan = document.createElement('span');
