@@ -83,7 +83,7 @@ export function showProductModal(product){
         const productInCart = cart.products.find((productInCart)=> productInCart.id === product.id)
         productInCart ?
             !product.checkStock( parseInt(qntInput.value) + parseInt(cart.products[cart.products.findIndex(productInCart => productInCart.id === product.id)].quantity))
-                && (qntInput.value = product.quantity)
+                && (qntInput.value = Math.abs(product.quantity - productInCart.quantity))
             :
             !product.checkStock(qntInput.value) && (qntInput.value = product.quantity)
     }
