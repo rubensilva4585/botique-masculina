@@ -7,7 +7,7 @@ import {getAllProducts} from "../../logic/getAllProducts.js";
 export function createShopGrid(){
     const productsGridContainerEl = document.createElement('div')
     productsGridContainerEl.classList.add('container')
-    productsGridContainerEl.appendChild(createPageTitle('Our Products'))
+    productsGridContainerEl.appendChild(createPageTitle('Our Products', "Explore the Latest Men's Fashion"))
 
     productsGridContainerEl.appendChild(shopGridFilters())
 
@@ -16,13 +16,13 @@ export function createShopGrid(){
     productsGridContainerEl.appendChild(productsGridEl)
     
 
-    const reloadProductsCards = (products) => {
+    const loadProductsCards = (products) => {
         products.map((product) => productsGridEl.appendChild(createProductCard(product)))
     }
 
     let AllProducts = [];
     getAllProducts(true).then((products) => {
-        reloadProductsCards(products)
+        loadProductsCards(products)
         AllProducts = products
     });
 
@@ -66,7 +66,7 @@ export function createShopGrid(){
                 break;
         }
 
-        reloadProductsCards(
+        loadProductsCards(
             AllProducts.filter((product) => {  
                 return product.name.toLowerCase()
                     .includes(inputSearch)  

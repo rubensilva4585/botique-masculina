@@ -1,4 +1,5 @@
 import { createContactForm } from '../contact/contactForm.js'
+import {createPageTitle} from "../createPageTitle.js";
 
 export function createContactFormGrid() {
     const contactFormDiv = document.createElement('div');
@@ -10,12 +11,9 @@ export function createContactFormGrid() {
     const contactHeader = document.createElement('div');
     contactHeader.classList.add('contact-header');
 
-    const contactHeaderText = document.createElement('h2');
-    contactHeaderText.innerText = 'Contact Us';
-
     contactFormDiv.appendChild(contactContainer);
     contactContainer.appendChild(contactHeader);
-    contactHeader.appendChild(contactHeaderText);
+    contactHeader.appendChild(createPageTitle('Contact Us', 'Your Satisfaction, Our Priority'));
 
     const contactFormMain = createContactForm();
     contactContainer.appendChild(contactFormMain);

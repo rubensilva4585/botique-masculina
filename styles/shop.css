@@ -1,13 +1,4 @@
-
 /* #region ==== shop ==== */
-.products-title{
-    margin: 40px 0;
-}
-.products-title h2{
-    text-align: center;
-}
-
-
 .products-filters{
     display: flex;
     justify-content: space-between;

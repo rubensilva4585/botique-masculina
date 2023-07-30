@@ -6,7 +6,7 @@ import {createPageTitle} from "../createPageTitle.js";
 export function createCartGrid(){
     const containerEl = document.createElement('div')
     containerEl.classList.add('container')
-    containerEl.appendChild(createPageTitle('Your Cart'))
+    containerEl.appendChild(createPageTitle('Your Cart', 'Ready to Complete Your Order?'))
     const cartGridEl = document.createElement('div')
     cartGridEl.classList.add('checkout-grid')
     cartGridEl.appendChild(createProductList())

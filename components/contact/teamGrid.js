@@ -2,6 +2,8 @@ import '../../style.css'
 import '../../styles/contact.css'
 import { getRandomUserAPI } from '../../services/getUserAPI.js'
 import { createTeamCard } from './teamCard.js'
+import {createPageTitle} from "../createPageTitle.js";
+
 
 export async function createTeamGrid() {
   const teamGrid = document.createElement('div');
@@ -10,13 +12,10 @@ export async function createTeamGrid() {
   const teamHeader = document.createElement('div');
   teamHeader.classList.add('team-header');
 
-  const teamHeaderTitle = document.createElement('h1');
-  teamHeaderTitle.innerText = 'Our Team';
-
   const teamContent = document.createElement('div');
   teamContent.classList.add('team');
 
-  teamHeader.appendChild(teamHeaderTitle);
+  teamHeader.appendChild(createPageTitle('Our Team', 'Driven by Excellence'));
   teamGrid.appendChild(teamHeader);
   teamGrid.appendChild(teamContent);
 

@@ -8,6 +8,8 @@ footer{
     width: 100%;
     line-height: 1.25;
     margin-top: 80px;
+    position: sticky;
+    top: 100%;
 }
 
 .footer-grid{
