@@ -35,13 +35,21 @@ export function createCheckoutComponent(){
     const cartTotal = checkoutContainerEl.querySelector('#cartTotal')
     const btnCheckout= checkoutContainerEl.querySelector('#btnCheckout')
 
-    let prevCoupon = {code:'', discount:''}
-    localStorage.getItem('validCoupon') !== null && (prevCoupon = JSON.parse(localStorage.getItem('validCoupon')))
-    prevCoupon.code!=='' && prevCoupon.discount!=='' ? (inCouponID.value = prevCoupon.code,
-            cartDiscount.textContent = `${prevCoupon.discount}%`,
-            cartTotal.textContent = (cart._getCartTotalPrice() *( 1 - parseInt(cartDiscount.textContent) / 100)).toFixed(2) + '$' )
-        : (inCouponID.value = '', cartDiscount.textContent = '0%')
 
+    let prevCoupon = {code:'', discount:''}
+
+    function updatePriceValues(){
+        cartSubTotal.textContent = cart._getCartTotalPrice().toFixed(2) + '$'
+        cart.coupon === "" ?
+            cartTotal.textContent = cart._getCartTotalPrice().toFixed(2) + '$'
+            :
+            (localStorage.getItem('validCoupon') !== null && (prevCoupon = JSON.parse(localStorage.getItem('validCoupon'))),
+                prevCoupon.code!=='' && prevCoupon.discount!=='' ? (inCouponID.value = prevCoupon.code,
+                        cartDiscount.textContent = `${prevCoupon.discount}%`,
+                        cartTotal.textContent = (cart._getCartTotalPrice() *( 1 - parseInt(cartDiscount.textContent) / 100)).toFixed(2) + '$' )
+                    : (inCouponID.value = '', cartDiscount.textContent = '0%'))
+    }
+    updatePriceValues()
 
     formCheckCoupon.addEventListener('submit',(e)=>{
         e.preventDefault()
@@ -62,6 +70,7 @@ export function createCheckoutComponent(){
                 }
                 else{
                     cart.setCoupon("")
+                    localStorage.setItem('validCoupon',JSON.stringify({code: '', discount: '' }))
                     statusMsgCoupon.classList.remove('valid')
                     statusMsgCoupon.classList.add('invalid')
                     statusMsgCoupon.textContent = response.error
@@ -92,10 +101,7 @@ export function createCheckoutComponent(){
     })
 
     document.addEventListener('CartChange',(e)=>{
-        cartSubTotal.textContent = e.detail.totalPrice.toFixed(2) + '$'
-        cart.coupon === "" ?
-            cartTotal.textContent = e.detail.totalPrice.toFixed(2) + '$' :
-            cartTotal.textContent = (e.detail.totalPrice * ( 1 - parseInt(cartDiscount.textContent.replace('$','')) / 100)).toFixed(2) + '$'
+        updatePriceValues()
     })
 
     return checkoutContainerEl

@@ -130,7 +130,7 @@
     border: 0;
     text-align: center;
     width: 40px;
-    padding: 0px 0;
+    padding: 0 0;
     border-right: 1px solid var(--slate-200);
     border-left: 1px solid var(--slate-200);
 }

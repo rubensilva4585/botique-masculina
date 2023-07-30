@@ -1,8 +1,11 @@
 import '../../styles/productModal.css'
 import {cart} from "../../pageMain.js";
 import {inputKeyIsNumber} from "../../utils/inputKeyIsNumber.js";
+import {Product} from "../../models/Product.js";
+import {starsContainerEl} from "./productCard.js";
 export function showProductModal(product){
     const body = document.querySelector('body')
+    product = new Product(product)
 
     const productModal = document.createElement('div')
     productModal.classList.add('product-modal')
@@ -17,11 +20,7 @@ export function showProductModal(product){
                 <div>
                     <h5 class="product-name">${product.name}</h5>
                     <div class="product-rating">
-                        <i class="fas fa-xs fa-star"></i>
-                        <i class="fas fa-xs fa-star"></i>
-                        <i class="far fa-xs fa-star"></i>
-                        <i class="far fa-xs fa-star"></i>
-                        <i class="far fa-xs fa-star"></i>
+                        ${starsContainerEl(product.rating)}
                     </div>
                     <h5 class="product-description">${product.description}</h5>
                 </div>
@@ -55,11 +54,13 @@ export function showProductModal(product){
 
     btnAdd.addEventListener('click', ()=> {
         qntInput.value++;
+        handleChangeInput()
     })
 
     btnRmv.addEventListener('click', ()=> {
         if(qntInput.value > 1){
             qntInput.value--;
+            handleChangeInput()
         }
     })
 
@@ -73,6 +74,19 @@ export function showProductModal(product){
         if(!inputKeyIsNumber(e.keyCode))
             e.preventDefault()
     })
+
+    qntInput.addEventListener('input', handleChangeInput)
+
+    function handleChangeInput(){
+        isNaN(qntInput.value) || qntInput.value==="" && (qntInput.value='1')
+
+        const productInCart = cart.products.find((productInCart)=> productInCart.id === product.id)
+        productInCart ?
+            !product.checkStock( parseInt(qntInput.value) + parseInt(cart.products[cart.products.findIndex(productInCart => productInCart.id === product.id)].quantity))
+                && (qntInput.value = product.quantity)
+            :
+            !product.checkStock(qntInput.value) && (qntInput.value = product.quantity)
+    }
 
     body.appendChild(productModal);
 }

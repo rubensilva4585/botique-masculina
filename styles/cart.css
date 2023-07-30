@@ -14,6 +14,7 @@
     background-color: white;
     border-radius: 10px;
     min-width: 30vw;
+    position: relative;
 }
 
 .item-list:hover {
@@ -237,6 +238,14 @@
     margin: 5px;
 }
 
+.empty-cart{
+    position: absolute;
+    top: 40%;
+    right: 50%;
+    font-size: 1rem;
+    transform: translateX(50%);
+}
+
 /* #endregion Cart */
 
 
@@ -268,11 +277,6 @@
 
 
 @media (min-width: 992px) {
-
-
-    /* .product-image{
-        height: 140px;
-    } */
 
     .checkout-grid {
         display: grid;

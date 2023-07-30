@@ -1,6 +1,7 @@
 import {cart} from "../../pageCart.js";
 import {inputKeyIsNumber} from "../../utils/inputKeyIsNumber.js";
 import {Product} from "../../models/Product.js";
+import {showEmptyCartMessage} from "../../utils/showEmptyCartMessage.js";
 
 export function addProductToCartPage(product, quantity){
     product = new Product(product)
@@ -28,33 +29,34 @@ export function addProductToCartPage(product, quantity){
     const btnDel = productRowEl.querySelector("#btn-delete")
     const btnAdd = productRowEl.querySelector("#btn_add")
     const btnRmv = productRowEl.querySelector("#btn_rmv")
-    const qntInput = productRowEl.querySelector("#product-quantity-input")
+    const cartQntInput = productRowEl.querySelector("#product-quantity-input")
 
     btnAdd.addEventListener('click', ()=> {
-        qntInput.value++
-        handleChangeInput()
+        cartQntInput.value++
+        handleChangeInputCart()
     })
 
     btnRmv.addEventListener('click', ()=> {
-        if(qntInput.value > 1){
-            qntInput.value--
-            handleChangeInput()
+        if(cartQntInput.value > 1){
+            cartQntInput.value--
+            handleChangeInputCart()
         }
     })
 
-    qntInput.addEventListener('keydown',(e)=>{
+    cartQntInput.addEventListener('keydown',(e)=>{
         if(!inputKeyIsNumber(e.keyCode))
             e.preventDefault()
     })
 
-    qntInput.addEventListener('input', handleChangeInput)
-    function handleChangeInput(){
-        isNaN(qntInput.value) || qntInput.value==="" && (qntInput.value='1')
-        product.checkStock(qntInput.value) ? cart.updateQuantity(product, qntInput.value) : qntInput.value = product.quantity
+    cartQntInput.addEventListener('input', handleChangeInputCart)
+    function handleChangeInputCart(){
+        isNaN(cartQntInput.value) || cartQntInput.value==="" && (cartQntInput.value='1')
+        product.checkStock(cartQntInput.value) ? cart.updateQuantity(product.id, cartQntInput.value) : cartQntInput.value = product.quantity
     }
 
     btnDel.addEventListener('click', ()=>{
         cart.removeProduct(product.id)
+        showEmptyCartMessage()
         productRowEl.remove()
     })
 

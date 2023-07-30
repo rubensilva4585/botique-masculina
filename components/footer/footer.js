@@ -17,7 +17,6 @@ export function setFooter() {
                 <li><a href="/index.html">Shop</a></li>
                 <li><a href="/cart.html">Cart</a></li>
                 <li><a href="/aboutus.html">About</a></li>
-                <li><a href="#">Terms & Conditions</a></li>
             </ul>
             </div>
             <div class="f-contact">
@@ -25,7 +24,7 @@ export function setFooter() {
             <ul>
                 <li><i class="fas fa-map-marker-alt"></i> 123 Rua do Bushido</li>
                 <li><i class="fas fa-phone"></i> 123-456-789</li>
-                <li><i class="fas fa-envelope"></i> suport@bushido.pt</li> 
+                <li><i class="fas fa-envelope"></i> support@bushido.pt</li> 
             </ul>              
             </div>
             <div class="f-social">
