@@ -1,6 +1,10 @@
 
 /* #region ==== Cart ==== */
 
+html, body{
+    overflow-x: hidden;
+}
+
 .checkout-grid {
     display: grid;
     gap: 30px;
@@ -13,30 +17,14 @@
     padding: 10px 20px;
     background-color: white;
     border-radius: 10px;
-    min-width: 30vw;
+    min-width: 100vw;
     position: relative;
+    left: -15px
 }
 
 .item-list:hover {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
-
-.cart-column-names{
-    display: flex;
-    justify-content: space-around;
-    height: 40px;
-    align-items: center;
-    text-align: center;
-
-    border-bottom: 1px solid var(--slate-200);
-    margin: 0 10px;
-}
-
-.cart-column-names>*{
-    width: 20%;
-}
-
-
 
 .product{
     display: grid;
@@ -44,17 +32,18 @@
     align-items: center;
     gap: 20px;
     border-bottom: 1px solid var(--slate-200);
+    padding-bottom: 5px;
 }
 
 .product:last-child {
     border-bottom: 0;
+    padding-bottom: 0;
 }
-
 
 .product-left {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .product-image{
@@ -88,11 +77,10 @@
     align-self: start;
 }
 
-
 .product-right{
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .product-quantity-container {
@@ -108,7 +96,7 @@
     border: 0;
     text-align: center;
     width: 40px;
-    padding: 0px 0;
+    padding: 0 0;
     border-right: 1px solid var(--slate-200);
     border-left: 1px solid var(--slate-200);
 }
@@ -126,7 +114,6 @@
 .product-quantity-container input[type="number"] {
   -moz-appearance: textfield; 
 }
-
 
 .product-quantity-container button {
     /* background-color: var(--slate-300); */
@@ -161,7 +148,6 @@
     color: red;
     background-color: rgb(82, 1, 1);
 }
-
 
 .check-coupon-container {
     display: flex;
@@ -198,6 +184,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px 20px;
+    max-width: 100vw;
+    position: relative;
+    left: calc(-100vw + calc(100vw - 15px))
 }
 
 .order-total-container {
@@ -230,7 +220,7 @@
     color: white;
     max-width: 300px;
     border-radius: 10px;
-    margin: auto;
+    margin: 20px auto auto auto;
 }
 
 .status-msg{
@@ -272,6 +262,27 @@
         text-align: center;
         padding: 10px;
     } */
+
+    .item-list {
+        min-width: 30vw;
+        left: 0;
+    }
+
+    .payment-info {
+        left: 0;
+    }
+
+    .product-quantity-container button {
+        padding: 10px 15px;
+    }
+
+    .product-left {
+        gap: 20px;
+    }
+
+    .product-right{
+        gap: 10px;
+    }
 }
 
 
@@ -291,7 +302,6 @@
         grid-area: payment;
         top: 4rem;
         margin-top: 2rem;
-
         position: sticky;
     }
 }
