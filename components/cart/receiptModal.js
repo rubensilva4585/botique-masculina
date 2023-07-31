@@ -12,6 +12,7 @@ export function showReceiptModal(cart, discount, message){
 
     const receiptTitle = document.createElement('div')
     receiptTitle.textContent = message
+    receiptTitle.classList.add('modal-title')
     receiptModalContent.appendChild(receiptTitle)
 
     const productSection = document.createElement('div')
@@ -33,8 +34,8 @@ export function showReceiptModal(cart, discount, message){
         </div>
       </div>
       <div class="product-right">
-        <div class="product-name">x${productInCart.quantity} un</div>
-        <div class="product-price">$${product.price*productInCart.quantity}</div>
+        <div class="receipt-product-quantity">x${productInCart.quantity} un</div>
+        <div class="receipt-product-price">$${product.price*productInCart.quantity}</div>
       </div>
 `
         productSection.appendChild(productRowReceipt)
@@ -58,6 +59,11 @@ export function showReceiptModal(cart, discount, message){
     `
 
     receiptModalContent.appendChild(detailSection)
+
+    const receiptNote = document.createElement('div')
+    receiptNote.textContent = 'We are now processing your order.'
+    receiptNote.classList.add('modal-note')
+    receiptModalContent.appendChild(receiptNote)
 
     const closeModalBtn = document.createElement('div')
     closeModalBtn.classList.add('modal-close')

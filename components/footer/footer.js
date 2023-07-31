@@ -15,8 +15,8 @@ export function setFooter() {
             <h4>Quick Links</h4>
             <ul>
                 <li><a href="/index.html">Shop</a></li>
-                <li><a href="/cart.html">Cart</a></li>
                 <li><a href="/aboutus.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
             </ul>
             </div>
             <div class="f-contact">
