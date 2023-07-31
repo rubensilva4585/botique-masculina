@@ -4,7 +4,7 @@ export function createContactForm() {
 
     const contactForm = document.createElement('form');
     contactForm.classList.add('contact-form');
-    // contactForm.addEventListener('submit', validateForm);
+    contactForm.method = 'POST';
 
     const contactFormInputName = document.createElement('div');
     contactFormInputName.classList.add('contact-form-input');
@@ -33,7 +33,7 @@ export function createContactForm() {
 
     const contactFormInputEmailInput = document.createElement('input');
     contactFormInputEmailInput.setAttribute('type', 'email');
-    contactFormInputCompanyInput.setAttribute('name', 'email');
+    contactFormInputEmailInput.setAttribute('name', 'email');
     contactFormInputEmailInput.setAttribute('placeholder', 'Email');
 
     const contactFormInputEmailSpan = document.createElement('span');
@@ -43,7 +43,7 @@ export function createContactForm() {
     contactFormInputMessage.classList.add('contact-form-input');
 
     const contactFormInputMessageTextarea = document.createElement('textarea');
-    contactFormInputCompanyInput.setAttribute('name', 'message');
+    contactFormInputMessageTextarea.setAttribute('name', 'message');
     contactFormInputMessageTextarea.setAttribute('placeholder', 'Write your message here...');
 
     const contactFormInputMessageSpan = document.createElement('span');
@@ -80,5 +80,44 @@ export function createContactForm() {
     contactMap.appendChild(contactMapIframe);
     contactMap.appendChild(contactMapAddress);
 
+    contactForm.addEventListener('submit', (e) => {
+        const contactFormInput = contactForm.querySelectorAll('.contact-form-input')
+        if (!validateForm(e, contactFormInput))
+            return
+
+        const form = {
+            name: contactFormInputNameInput.value,
+            company: contactFormInputCompanyInput.value,
+            email: contactFormInputEmailInput.value,
+            message: contactFormInputMessageTextarea.value
+        }
+
+        contactFormInput.forEach(inputDiv => inputDiv.children[0].value = '');
+
+        alert(`Form submitted!\n\n\nName:   ${form.name}\nCompany:   ${form.company}\nEmail:   ${form.email}\n\nMessage:   ${form.message}`);
+    });
     return contactFormMain;
+}
+
+function validateForm(e, form) {
+    e.preventDefault();
+    let valid = true;
+    form.forEach(inputDiv => {
+        inputDiv.classList.remove('invalid');
+        if (inputDiv.children[0].value === '') {
+            valid = false;
+            inputDiv.classList.add('invalid');
+            inputDiv.querySelector('span').innerText = 'This field is required';
+        } else {
+            if (inputDiv.children[0].name === 'email') {
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!emailRegex.test(inputDiv.children[0].value)) {
+                    valid = false;
+                    inputDiv.classList.add('invalid');
+                    inputDiv.querySelector('span').innerText = 'Invalid email address';
+                }
+            }
+        }
+    });
+    return valid;
 }
