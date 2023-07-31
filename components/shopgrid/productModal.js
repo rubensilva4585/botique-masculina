@@ -43,10 +43,8 @@ export function showProductModal(product){
         </div>
     `
 
-    const buttonCloseModal = productModal.querySelector(".modal-close")
-    buttonCloseModal.addEventListener('click', ()=> {
-        productModal.remove();
-    })
+    productModal.querySelector(".modal-close")
+        .addEventListener('click', () => productModal.remove())
 
     const btnAdd = productModal.querySelector("#btn_add")
     const btnRmv = productModal.querySelector("#btn_rmv")
@@ -54,17 +52,13 @@ export function showProductModal(product){
     const btnAddCart = productModal.querySelector("#btn-addCart")
 
     const productInCart = cart.products.find((productInCart) => productInCart.id === product.id)
-    if(productInCart) 
-    {
-        if(productInCart.quantity === product.quantity)
-        {
-            btnAdd.disabled = true
-            btnRmv.disabled = true
-            qntInput.disabled = true
-            btnAddCart.disabled = true
-        }
 
-    }
+    productInCart
+        && parseInt(productInCart.quantity) === parseInt(product.quantity)
+        && (btnAdd.disabled = true,
+            btnRmv.disabled = true,
+            qntInput.disabled = true,
+            btnAddCart.disabled = true)
 
     btnAdd.addEventListener('click', ()=> {
         qntInput.value++;
@@ -79,21 +73,23 @@ export function showProductModal(product){
     })
 
     qntInput.addEventListener('keydown',(e)=>{
-        if(!inputKeyIsNumber(e.keyCode))
-            e.preventDefault()
+        if(inputKeyIsNumber(e.keyCode))
+            return
+            
+        e.preventDefault()
     })
     
     qntInput.addEventListener('input', handleChangeInput)
 
-    function handleChangeInput(){
+    function handleChangeInput(){''
         validInputNumber(qntInput.value)
-            && (qntInput.value='1')
+            && (qntInput.value = '1')
 
-        const productInCart = cart.products.find((productInCart) => productInCart.id === product.id)
         productInCart
-            ? !product.checkStock( parseInt(qntInput.value) + parseInt(cart.products[cart.products.findIndex(productInCart => productInCart.id === product.id)].quantity))
+            ? !product.checkStock(parseInt(qntInput.value) + parseInt(productInCart.quantity))
                 && (qntInput.value = Math.abs(product.quantity - productInCart.quantity))
-            : !product.checkStock(qntInput.value) && (qntInput.value = product.quantity)
+            : !product.checkStock(qntInput.value) 
+                && (qntInput.value = product.quantity)
     }
 
     btnAddCart.addEventListener('click', ()=> {
