@@ -8,7 +8,7 @@ export function createContactBanner() {
     const contactBannerStaticContent = document.createElement('div');
     contactBannerStaticContent.classList.add('contact-banner-static-content');
 
-    const contactBannerStaticContentH1 = document.createElement('h1').innerText = 'Get in touch';
+    const contactBannerStaticContentH1 = document.createElement('h1');
     contactBannerStaticContentH1.innerText = 'Get in touch';
 
     const contactBannerStaticContentH5 = document.createElement('h5');

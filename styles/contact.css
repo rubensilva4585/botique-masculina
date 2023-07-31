@@ -26,7 +26,8 @@
     bottom: 10%;
     padding: 20px;
     z-index: 2;
-    background-color: rgba(34, 34, 34, 0.436);
+    background-color: rgba(0, 0, 0, 0.489);
+    backdrop-filter: blur(10px);
     border-radius: 15px;
     display: flex;
     justify-content: center;
