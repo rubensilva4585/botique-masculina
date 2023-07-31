@@ -117,7 +117,6 @@ html, body{
 }
 
 .product-quantity-container button {
-    /* background-color: var(--slate-300); */
     background-color: transparent;
     border: 0;
     padding: 10px 15px;
@@ -242,28 +241,6 @@ html, body{
 
 
 @media (min-width: 576px) {
-    /* .product-image{
-        height: 90px;
-    } */
-
-    /* .product-quantity-container button {
-        padding: 10px 15px;
-    }
-    .product-quantity-container input {
-        width: 50px;
-    }*/
-    /* .product-quantity-container {
-        flex-direction: row;
-    }  */
-    /* .product{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-
-        text-align: center;
-        padding: 10px;
-    } */
-
     .item-list {
         min-width: 30vw;
         left: 0;
@@ -285,8 +262,6 @@ html, body{
         gap: 10px;
     }
 }
-
-
 
 @media (min-width: 992px) {
 

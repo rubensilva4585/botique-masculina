@@ -27,7 +27,6 @@ export function createCheckoutComponent(){
           </div>
         </div>
            <button id="btnCheckout" class="checkout-btn" type="submit">Checkout</button>
-           <button id="teste" class="checkout-btn" type="submit">teste</button>
     `
     const formCheckCoupon   = checkoutContainerEl.querySelector('#formCoupon')
     const inCouponID        = checkoutContainerEl.querySelector('#couponID')
@@ -95,10 +94,6 @@ export function createCheckoutComponent(){
             return
         }
         alert('Your cart is empty!')
-    })
-
-    checkoutContainerEl.querySelector('#teste').addEventListener('click', ()=>{
-        showReceiptModal(cart, getCouponFromLocalStorage().discount, 'CONA')
     })
 
     document.addEventListener('CartChange', updatePriceValues)

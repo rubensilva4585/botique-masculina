@@ -44,14 +44,6 @@ export class Product{
         return this.#rating
     }
 
-    set quantity(orderedQnt){
-        if(orderedQnt<=0)
-            return "Can't purchase that amount."
-        if(this.#quantity-orderedQnt<0)
-            return "Quantity exceeds the stock."
-        this.#quantity-=orderedQnt
-    }
-
     checkStock(quantityToOrder){
         return this.#quantity >= quantityToOrder ? true : (alert(`We are sorry, only ${this.quantity} units in stock.`), false)
     }

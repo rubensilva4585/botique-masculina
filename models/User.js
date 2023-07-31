@@ -3,9 +3,9 @@ export class User {
     #name;
     #image;
 
-    constructor(name, age) {
+    constructor(name, image) {
         this.#name = name;
-        this.#image = age;
+        this.#image = image;
     }
 
     get name() {

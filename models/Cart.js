@@ -13,14 +13,12 @@ export class Cart {
         this.saveOnLocalStorage()
     }
     addProduct(product, quantityToAdd){
-        const productInCart = this.products.find((productInCart)=> productInCart.id === product.id)
         product = new Product(getProductById(product.id))
-        if(productInCart){
-            product.checkStock(parseInt(quantityToAdd) + parseInt(productInCart.quantity)) &&
-                (this.updateQuantity(productInCart.id,parseInt(quantityToAdd) + parseInt(productInCart.quantity)))
-        }
-
-        else product.checkStock(quantityToAdd) && (this.products.push({id: product.id, quantity: quantityToAdd}))
+        const productInCart = this.products.find((productInCart)=> productInCart.id === product.id)
+        productInCart
+            ? (product.checkStock(parseInt(quantityToAdd) + parseInt(productInCart.quantity))
+                && (this.updateQuantity(productInCart.id,parseInt(quantityToAdd) + parseInt(productInCart.quantity))))
+            : product.checkStock(quantityToAdd) && (this.products.push({id: product.id, quantity: quantityToAdd}))
 
         dispatchCartChangeEvent(this._getTotalQuantity(), this._getCartTotalPrice())
         this.saveOnLocalStorage()
@@ -28,8 +26,8 @@ export class Cart {
 
     removeProduct(id){
         const index = this.products.findIndex(product => product.id === id)
-        if( index !== -1 )
-            this.products.splice(index, 1);
+        index !== -1
+            && (this.products.splice(index, 1))
 
         dispatchCartChangeEvent(this._getTotalQuantity(), this._getCartTotalPrice())
         this.saveOnLocalStorage()
