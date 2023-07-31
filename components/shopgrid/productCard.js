@@ -5,7 +5,10 @@ const productsGridEl = document.querySelector('.products-grid')
 export const starsContainerEl =(rating)=>{
     const container = document.createElement('div')
     for (let i = 1; i <= 5; i++) {
-        container.innerHTML += i <= parseInt(rating) ? '<i class="fas fa-xs fa-star"></i>' : '<i class="far fa-xs fa-star"></i>'
+        container.innerHTML 
+          += i <= parseInt(rating) 
+            ? '<i class="fas fa-xs fa-star"></i>' 
+            : '<i class="far fa-xs fa-star"></i>'
     }
     return container.innerHTML
 }
