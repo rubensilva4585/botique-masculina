@@ -8,11 +8,11 @@ export function createContactBanner() {
     const contactBannerStaticContent = document.createElement('div');
     contactBannerStaticContent.classList.add('contact-banner-static-content');
 
-    const contactBannerStaticContentH1 = document.createElement('h1');
+    const contactBannerStaticContentH1 = document.createElement('h1').innerText = 'Get in touch';
     contactBannerStaticContentH1.innerText = 'Get in touch';
 
     const contactBannerStaticContentH5 = document.createElement('h5');
-    contactBannerStaticContentH5.innerText = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.';
+    contactBannerStaticContentH5.innerText = 'Our team of experts is ready to provide personalized assistance in choosing your clothing.';
 
     const contactBannerStaticContentButton = document.createElement('button');
     contactBannerStaticContentButton.setAttribute('type', 'button');
