@@ -22,13 +22,8 @@ export function shopGridFilters(){
 
     const inputSearch = shopGridFiltersDiv.querySelector("#search")
     const selectSort = shopGridFiltersDiv.querySelector("#sort")
-
-    inputSearch.addEventListener('keyup', (e)=> {
-        dispatchChangeShopFilters(inputSearch.value, selectSort.value)
-    })
-    selectSort.addEventListener('change', (e)=> {
-        dispatchChangeShopFilters(inputSearch.value, selectSort.value)
-    })
+    inputSearch.addEventListener('keyup', ()=> dispatchChangeShopFilters(inputSearch.value, selectSort.value))
+    selectSort.addEventListener('change', ()=> dispatchChangeShopFilters(inputSearch.value, selectSort.value))
 
     return shopGridFiltersDiv
 }

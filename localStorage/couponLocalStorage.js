@@ -1,6 +1,5 @@
 const value = 'validCoupon'
 
-
 export function saveCouponOnLocalStorage(coupon = '', discount = 0){
         localStorage.setItem(value, JSON.stringify({code: coupon, discount: discount}))
 }

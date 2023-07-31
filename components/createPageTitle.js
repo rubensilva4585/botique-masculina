@@ -3,12 +3,12 @@ export function createPageTitle(title, subtitle){
     HeaderEl.classList.add('div-title')
 
     const TitleEl =  document.createElement('h2')
-    TitleEl.textContent= `${title}`
+    TitleEl.textContent = `${title}`
     HeaderEl.appendChild(TitleEl)
 
     if(subtitle){
-        const SubtitleEl =  document.createElement('p')
-        SubtitleEl.textContent= `${subtitle}`
+        const SubtitleEl = document.createElement('p')
+        SubtitleEl.textContent = `${subtitle}`
         HeaderEl.appendChild(SubtitleEl)
     }
 

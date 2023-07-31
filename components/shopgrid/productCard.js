@@ -13,7 +13,6 @@ export const starsContainerEl =(rating)=>{
 export function createProductCard(product){
     const productCardEl = document.createElement('div')
 
-
     productCardEl.classList.add('product-card')
     productCardEl.innerHTML=`
       <div class="product-image">
@@ -35,10 +34,6 @@ export function createProductCard(product){
       </div>
     `
 
-    // const buttonAddCart = productCardEl.querySelector(".product-addcart")
-    productCardEl.addEventListener('click', ()=> {
-        // alert(product.name);
-        showProductModal(product)
-    })
+    productCardEl.addEventListener('click', () => showProductModal(product))
     return productCardEl
 }

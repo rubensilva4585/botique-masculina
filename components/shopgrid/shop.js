@@ -8,13 +8,11 @@ export function createShopGrid(){
     const productsGridContainerEl = document.createElement('div')
     productsGridContainerEl.classList.add('container')
     productsGridContainerEl.appendChild(createPageTitle('Our Products', "Explore the Latest Men's Fashion"))
-
     productsGridContainerEl.appendChild(shopGridFilters())
 
     const productsGridEl = document.createElement('div')
     productsGridEl.classList.add('products-grid')
     productsGridContainerEl.appendChild(productsGridEl)
-    
 
     const loadProductsCards = (products) => {
         products.map((product) => productsGridEl.appendChild(createProductCard(product)))
