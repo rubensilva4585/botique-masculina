@@ -3,13 +3,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
     padding: 20px 0;
 }
 
 /* #region .searchBar */
 .searchBar{
+    display: flex;
+    align-items: center;
     width: fit-content;
-    max-width: 300px;
+    max-width: 280px;
     overflow: hidden;
     transition: all 0.3s ease;
 }
@@ -20,7 +23,7 @@
 }
 .searchBar input{
     color: var(--slate-300);
-    max-width: 300px;
+    max-width: 280px;
     padding-left: 15px;
     background-color: transparent;
     transition: all 0.3s ease;

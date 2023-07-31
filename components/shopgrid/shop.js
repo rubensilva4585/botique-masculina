@@ -1,8 +1,9 @@
 import '../../styles/shop.css'
-import {createPageTitle} from "./../createPageTitle.js";
-import {shopGridFilters} from "./shopGridFilters.js";
-import {createProductCard} from "./productCard.js";
-import {getAllProducts} from "../../logic/getAllProducts.js";
+import { createPageTitle } from "./../createPageTitle.js";
+import { shopGridFilters } from "./shopGridFilters.js";
+import { createProductCard } from "./productCard.js";
+import { getAllProducts } from "../../logic/getAllProducts.js";
+import { getFilteredProducts } from "../../logic/getFilteredProducts.js";
 
 export function createShopGrid(){
     const productsGridContainerEl = document.createElement('div')
@@ -27,49 +28,10 @@ export function createShopGrid(){
     // shop filters
     document.addEventListener('changeShopFilters', (e)=> {
         productsGridEl.innerHTML = ''
-
         const inputSearch = e.detail.inputSearch.toLowerCase();
         const sortValue = e.detail.sortValue;
 
-        switch(sortValue){
-            case 'rating':
-                AllProducts.sort((a, b) => {
-                    return b.rating - a.rating
-                })
-                break;
-            case 'pricelth':
-                AllProducts.sort((a, b) => {
-                    return a.price - b.price
-                })
-                break;
-            case 'pricehtl':
-                AllProducts.sort((a, b) => {
-                    return b.price - a.price
-                })
-                break;
-            case 'namelth':
-                AllProducts.sort((a, b) => {
-                    return a.name.localeCompare(b.name)
-                })
-                break;
-            case 'namehtl':
-                AllProducts.sort((a, b) => {
-                    return b.name.localeCompare(a.name)
-                })
-                break;
-            default:
-                AllProducts.sort((a, b) => {
-                    return b.id - a.id
-                })
-                break;
-        }
-
-        loadProductsCards(
-            AllProducts.filter((product) => {  
-                return product.name.toLowerCase()
-                    .includes(inputSearch)  
-            })
-        )
+        loadProductsCards(getFilteredProducts(inputSearch, sortValue, AllProducts))
     })
 
     return productsGridContainerEl
