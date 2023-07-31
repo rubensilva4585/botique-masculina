@@ -32,6 +32,8 @@ export function getFilteredProducts(inputSearch, sortValue, products) {
             break;
     }
 
+    if(inputSearch.length <= 1) return products
+
     return products.filter((product) => {  
             return product.name.toLowerCase()
                 .includes(inputSearch)  

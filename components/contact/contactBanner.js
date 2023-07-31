@@ -1,3 +1,5 @@
+import { scrollTo } from '../../utils/scrollTo';
+
 export function createContactBanner() {
     const contactBanner = document.createElement('div');
     contactBanner.classList.add('contact-banner');
@@ -17,7 +19,6 @@ export function createContactBanner() {
     const contactBannerStaticContentButton = document.createElement('button');
     contactBannerStaticContentButton.setAttribute('type', 'button');
     contactBannerStaticContentButton.innerText = 'Contact us';
-    contactBannerStaticContentButton.addEventListener('click', scrollButton);
 
     const contactBannerImage = document.createElement('img');
     contactBannerImage.classList.add('contact-banner-image');
@@ -29,11 +30,10 @@ export function createContactBanner() {
     contactBannerStaticContent.appendChild(contactBannerStaticContentH1);
     contactBannerStaticContent.appendChild(contactBannerStaticContentH5);
     contactBannerStaticContent.appendChild(contactBannerStaticContentButton);
+ 
+    contactBannerStaticContentButton.addEventListener('click', () => scrollTo(document.querySelector('#contact-form')));
 
     document.querySelector('main').appendChild(contactBanner);
 }
 
-function scrollButton() {
-    const contactForm = document.querySelector('#contact-form');
-    contactForm.scrollIntoView({ behavior: 'smooth' });
-}
+

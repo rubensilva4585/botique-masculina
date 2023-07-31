@@ -1,7 +1,5 @@
 import {showProductModal} from './productModal.js'
 
-const productsGridEl = document.querySelector('.products-grid')
-
 export const starsContainerEl =(rating)=>{
     const container = document.createElement('div')
     for (let i = 1; i <= 5; i++) {
