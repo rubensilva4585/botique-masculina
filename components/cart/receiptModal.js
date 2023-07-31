@@ -1,5 +1,4 @@
 import '../../styles/productModal.css'
-import '../../styles/cart.css'
 import '../../styles/receiptModal.css'
 import {getProductById} from "../../utils/getProductById.js"
 
