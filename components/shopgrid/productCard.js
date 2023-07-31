@@ -17,9 +17,7 @@ export function createProductCard(product){
     productCardEl.classList.add('product-card')
     productCardEl.innerHTML=`
       <div class="product-image">
-        <a href="#">
-          <img src=${product.image} alt="product image" />
-        </a>
+        <img src=${product.image} alt="product image" />
         <button class="product-addcart">
           <i class="fa-solid fa-cart-plus"></i>
         </button>
@@ -34,7 +32,10 @@ export function createProductCard(product){
         </div>
       </div>
     `
+    if(product.quantity > 0)
+      productCardEl.addEventListener('click', () => showProductModal(product))
+    else
+      productCardEl.classList.add('out-of-stock')
 
-    productCardEl.addEventListener('click', () => showProductModal(product))
     return productCardEl
 }

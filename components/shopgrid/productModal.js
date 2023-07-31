@@ -51,6 +51,20 @@ export function showProductModal(product){
     const btnAdd = productModal.querySelector("#btn_add")
     const btnRmv = productModal.querySelector("#btn_rmv")
     const qntInput = productModal.querySelector("#product-quantity-input")
+    const btnAddCart = productModal.querySelector("#btn-addCart")
+
+    const productInCart = cart.products.find((productInCart) => productInCart.id === product.id)
+    if(productInCart) 
+    {
+        if(productInCart.quantity === product.quantity)
+        {
+            btnAdd.disabled = true
+            btnRmv.disabled = true
+            qntInput.disabled = true
+            btnAddCart.disabled = true
+        }
+
+    }
 
     btnAdd.addEventListener('click', ()=> {
         qntInput.value++;
@@ -64,17 +78,11 @@ export function showProductModal(product){
         }
     })
 
-    const btnAddCart = productModal.querySelector("#btn-addCart")
-    btnAddCart.addEventListener('click', ()=> {
-        cart.addProduct(product, qntInput.value)
-        productModal.remove();
-    })
-
     qntInput.addEventListener('keydown',(e)=>{
         if(!inputKeyIsNumber(e.keyCode))
             e.preventDefault()
     })
-
+    
     qntInput.addEventListener('input', handleChangeInput)
 
     function handleChangeInput(){
@@ -87,6 +95,11 @@ export function showProductModal(product){
                 && (qntInput.value = Math.abs(product.quantity - productInCart.quantity))
             : !product.checkStock(qntInput.value) && (qntInput.value = product.quantity)
     }
+
+    btnAddCart.addEventListener('click', ()=> {
+        cart.addProduct(product, qntInput.value)
+        productModal.remove();
+    })
 
     body.appendChild(productModal);
 }
