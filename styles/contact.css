@@ -123,22 +123,25 @@
     border: 1px solid var(--white);
 }
 
-.invalid {
-    color: red;
-}
-
-.invalid input {
-    border-color: rgb(131, 0, 0);
-}
-
-.invalid input:focus {
-    border-color: red;
-}
-
-.hidden>span {
+.contact-form-input span {
+    font-size: .875rem;
     display: none;
 }
 
+.contact-form-input.invalid span {
+    display: block;
+    color: red;
+}
+
+.invalid input,
+.invalid textarea {
+    border-color: rgb(131, 0, 0);
+}
+
+.invalid input:focus,
+.invalid textarea:focus {
+    border-color: red;
+}
 
 .contact-form button {
     padding: 10px 20px;
@@ -255,9 +258,7 @@
 
 /* #endregion Contact Us  */
 
-
-
-@media (min-width: 576px) {
+@media (min-width: 768px) {
     .contact-banner-static-content {
         text-align: left;
     }
@@ -277,5 +278,4 @@
     .team-member {
         flex-direction: column;
     }
-
 }
