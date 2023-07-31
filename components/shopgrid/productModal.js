@@ -1,13 +1,11 @@
 import '../../styles/productModal.css'
 import { cart } from "../../pageMain.js";
 import { inputKeyIsNumber } from "../../utils/inputKeyIsNumber.js";
-import { Product } from "../../models/Product.js";
 import { starsContainerEl } from "./productCard.js";
 import { validInputNumber } from "../../utils/validInputNumber.js";
 
 export function showProductModal(product){
     const body = document.querySelector('body')
-    product = new Product(product)
 
     const productModal = document.createElement('div')
     productModal.classList.add('product-modal')

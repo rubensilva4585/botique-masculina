@@ -1,7 +1,7 @@
 
-import {getProductById} from "../../utils/getProductById.js";
-import {cart} from "../../pageCart.js";
-import {addProductToCartPage} from "./cartRow.js";
+import { getProductById } from "../../utils/getProductById.js";
+import { cart } from "../../pageCart.js";
+import { addProductToCartPage } from "./cartRow.js";
 
 export function createProductList(){
     const productListEl = document.createElement('div')

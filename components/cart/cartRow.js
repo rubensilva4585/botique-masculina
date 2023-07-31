@@ -1,11 +1,9 @@
-import {cart} from "../../pageCart.js";
-import {inputKeyIsNumber} from "../../utils/inputKeyIsNumber.js";
-import {Product} from "../../models/Product.js";
-import {showEmptyCartMessage} from "./showEmptyCartMessage.js";
-import {validInputNumber} from "../../utils/validInputNumber.js";
+import { cart } from "../../pageCart.js";
+import { inputKeyIsNumber } from "../../utils/inputKeyIsNumber.js";
+import { showEmptyCartMessage } from "./showEmptyCartMessage.js";
+import { validInputNumber } from "../../utils/validInputNumber.js";
 
 export function addProductToCartPage(product, quantity){
-    product = new Product(product)
     const productRowEl = document.createElement('div')
     productRowEl.classList.add('product')
     productRowEl.innerHTML=`

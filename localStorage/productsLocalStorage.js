@@ -1,3 +1,5 @@
+import { Product } from "../models/Product.js";
+
 const value = "storedProducts"
 
 export function saveProductsOnLocalStorage(allProducts) {
@@ -7,6 +9,6 @@ export function saveProductsOnLocalStorage(allProducts) {
 
 export function getProductsFromLocalStorage() {
     let storedProducts = JSON.parse(localStorage.getItem(value))
-    storedProducts = storedProducts.map((product) => JSON.parse(product))
+    storedProducts = storedProducts.map((product) => new Product(JSON.parse(product)))
     return storedProducts
 }

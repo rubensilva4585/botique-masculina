@@ -1,4 +1,4 @@
-import {getProductsFromLocalStorage} from "../localStorage/productsLocalStorage.js";
+import { getProductsFromLocalStorage } from "../localStorage/productsLocalStorage.js";
 
 export function getProductById(id){
     const allProducts = getProductsFromLocalStorage()
