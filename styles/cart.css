@@ -20,7 +20,8 @@ html, body{
     min-width: 100vw;
     position: relative;
     left: -15px;
-    min-height:80px;
+    height: fit-content;
+    min-height: 80px;
 }
 
 .item-list:hover {
@@ -162,11 +163,17 @@ html, body{
 }
 
 .check-coupon-container>form>.btn {
-    background-color: var(--slate-900);
+    background-color: var(--slate-700);
     padding: 10px 20px;
     border: 0;
     cursor: pointer;
     color: white;
+    border-radius: 8px;
+    font-size: .875rem;
+    transition: all 0.3s ease;
+}
+.check-coupon-container>form>.btn:hover{
+    background-color: var(--slate-900);
 }
 
 .input-coupon {
@@ -187,7 +194,7 @@ html, body{
     padding: 10px 20px;
     max-width: 100vw;
     position: relative;
-    left: calc(-100vw + calc(100vw - 15px))
+    left: -15px;
 }
 
 .order-total-container {
@@ -206,14 +213,14 @@ html, body{
 .order-total-values {
     display: flex;
     flex-direction: column;
-
     text-align: right;
-
     row-gap: 5px;
 }
 
 .checkout-btn{
-    background-color: var(--slate-900);
+    font-size: .875rem;
+    transition: all 0.3s ease;
+    background-color: var(--slate-700);
     padding: 10px 20px;
     border: 0;
     cursor: pointer;
@@ -223,6 +230,10 @@ html, body{
     margin: 20px auto auto auto;
 }
 
+.checkout-btn:hover{
+    background-color: var(--slate-900);
+}
+
 .status-msg{
     font-size: .75rem;
     margin: 5px;
@@ -230,10 +241,10 @@ html, body{
 
 .empty-cart{
     position: absolute;
-    top: 40%;
-    right: 50%;
+    top: 50%;
+    left: 50%;
     font-size: 1rem;
-    transform: translateX(50%);
+    transform: translate(-50%, -50%);
 }
 
 /* #endregion Cart */
@@ -277,7 +288,6 @@ html, body{
     .payment-info {
         grid-area: payment;
         top: 4rem;
-        margin-top: 2rem;
         position: sticky;
     }
 }

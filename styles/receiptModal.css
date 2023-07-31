@@ -16,6 +16,26 @@
     flex-direction: column;
 }
 
+.modal-title{
+    font-size: .75rem;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.receipt-product-price{
+    font-size: 1rem;
+    min-width: 40px;
+}
+.receipt-product-quantity{
+    font-size: 1rem;
+    min-width: 40px;
+}
+.modal-note{
+    font-size: 1rem;
+    margin: 10px 0;
+    text-align: center;
+}
+
 @media (min-width: 576px){
     .receipt-modal-content{
         width: 556px;

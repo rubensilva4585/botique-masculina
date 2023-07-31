@@ -3,7 +3,6 @@ import '../../styles/receiptModal.css'
 import {getProductById} from "../../utils/getProductById.js"
 
 export function showReceiptModal(cart, discount, message){
-    const body = document.querySelector('body')
     const receiptModal = document.createElement('div')
     receiptModal.classList.add('product-modal')
 
@@ -13,6 +12,7 @@ export function showReceiptModal(cart, discount, message){
 
     const receiptTitle = document.createElement('div')
     receiptTitle.textContent = message
+    receiptTitle.classList.add('modal-title')
     receiptModalContent.appendChild(receiptTitle)
 
     const productSection = document.createElement('div')
@@ -30,12 +30,12 @@ export function showReceiptModal(cart, discount, message){
         </div>
         <div class="product-details">
           <div class="product-name">${product.name}</div>
-          <div class="product-price">$${product.price} p/un.</div>
+          <div class="receipt-product-price">$${product.price} p/un.</div>
         </div>
       </div>
       <div class="product-right">
-        <div class="product-name">x${productInCart.quantity} un</div>
-        <div class="product-price">$${product.price*productInCart.quantity}</div>
+        <div class="receipt-product-quantity">x${productInCart.quantity} un</div>
+        <div class="product-price">$${(product.price*productInCart.quantity).toFixed(2)}</div>
       </div>
 `
         productSection.appendChild(productRowReceipt)
@@ -60,6 +60,11 @@ export function showReceiptModal(cart, discount, message){
 
     receiptModalContent.appendChild(detailSection)
 
+    const receiptNote = document.createElement('div')
+    receiptNote.textContent = 'We are now processing your order.'
+    receiptNote.classList.add('modal-note')
+    receiptModalContent.appendChild(receiptNote)
+
     const closeModalBtn = document.createElement('div')
     closeModalBtn.classList.add('modal-close')
     closeModalBtn.innerHTML=`
@@ -71,5 +76,6 @@ export function showReceiptModal(cart, discount, message){
         receiptModal.remove()
         window.location.href = '/index.html'
     })
-    body.appendChild(receiptModal);
+
+    document.querySelector('body').appendChild(receiptModal);
 }

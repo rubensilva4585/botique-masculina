@@ -56,12 +56,12 @@ export function createCheckoutComponent(){
         e.preventDefault()
         if(inCouponID.value){
             formCheckCoupon.disabled=true
-            checkCouponAPI(inCouponID.value).then((response)=>{
+            checkCouponAPI(inCouponID.value.trim()).then((response)=>{
                 if(!response)
                     return
 
                 response.success
-                    ? renderCheckCoupon(response.message, inCouponID.value, true, response.discount)
+                    ? renderCheckCoupon(response.message, inCouponID.value.trim(), true, response.discount)
                     : renderCheckCoupon(response.error)
             })
         }
