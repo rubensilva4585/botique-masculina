@@ -18,7 +18,9 @@ export function createTeamCard(user, job) {
     teamMemberJob.innerText = job;
 
     const teamMemberDescription = document.createElement('p');
-    teamMemberDescription.innerText = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit cum culpa libero molestiae provident, perferendis ex quae beatae veritatis optio?';
+    job === "Sales Representative" ?
+        teamMemberDescription.innerText = `With a profound understanding of products and services, ${user.name.split(' ')[0]} tailors precise solutions to meet clients' needs. Excellent communication and attentive listening help navigate even the toughest objections with finesse.` :
+        teamMemberDescription.innerText = `${user.name.split(' ')[0]}'s dedication to customer satisfaction makes them a support superstar, turning dissatisfied clients into brand advocates, fostering loyalty, and contributing to the company's success.`;
 
     const teamMemberSocial = document.createElement('div');
     teamMemberSocial.classList.add('team-member-social');
