@@ -39,15 +39,16 @@ export function createCheckoutComponent(){
     let prevCoupon = {code:'', discount:''}
 
     function updatePriceValues(){
-        cartSubTotal.textContent = cart._getCartTotalPrice().toFixed(2) + '$'
-        cart.coupon === "" ?
-            cartTotal.textContent = cart._getCartTotalPrice().toFixed(2) + '$'
-            :
-            (localStorage.getItem('validCoupon') !== null && (prevCoupon = JSON.parse(localStorage.getItem('validCoupon'))),
-                prevCoupon.code!=='' && prevCoupon.discount!=='' ? (inCouponID.value = prevCoupon.code,
-                        cartDiscount.textContent = `${prevCoupon.discount}%`,
-                        cartTotal.textContent = (cart._getCartTotalPrice() *( 1 - parseInt(cartDiscount.textContent) / 100)).toFixed(2) + '$' )
-                    : (inCouponID.value = '', cartDiscount.textContent = '0%'))
+        const cartTotalPrice = cart._getCartTotalPrice().toFixed(2);
+        cartSubTotal.textContent = cartTotalPrice + '$'
+
+        prevCoupon = JSON.parse(localStorage.getItem('validCoupon'))  
+        prevCoupon.code && prevCoupon.discount
+            ? (inCouponID.value = prevCoupon.code,
+                cartDiscount.textContent = `${prevCoupon.discount}%`,
+                cartTotal.textContent = (cartTotalPrice *( 1 - parseInt(prevCoupon.discount) / 100)).toFixed(2) + '$')
+            : (cartDiscount.textContent = '0%',
+                cartTotal.textContent = cartTotalPrice + '$')
     }
     updatePriceValues()
 
@@ -56,53 +57,47 @@ export function createCheckoutComponent(){
         if(inCouponID.value){
             formCheckCoupon.disabled=true
             checkCouponAPI(inCouponID.value).then((response)=>{
-                if(!response){
+                if(!response)
                     return
-                }
-                if(response.success){
-                    statusMsgCoupon.classList.remove('invalid')
-                    statusMsgCoupon.classList.add('valid')
-                    statusMsgCoupon.textContent = response.message
-                    cart.setCoupon(inCouponID.value)
-                    cartDiscount.textContent = response.discount + '%'
-                    cartTotal.textContent = (cart._getCartTotalPrice() *( 1 - parseInt(response.discount) / 100)).toFixed(2) + '$'
-                    localStorage.setItem('validCoupon',JSON.stringify({code: inCouponID.value, discount: response.discount }))
-                }
-                else{
-                    cart.setCoupon("")
-                    localStorage.setItem('validCoupon',JSON.stringify({code: '', discount: '' }))
-                    statusMsgCoupon.classList.remove('valid')
-                    statusMsgCoupon.classList.add('invalid')
-                    statusMsgCoupon.textContent = response.error
-                    cartDiscount.textContent = '0%'
-                    cartTotal.textContent = (cart._getCartTotalPrice()).toFixed(2) + '$'
-                }
+
+                response.success
+                    ? renderCheckCupon(response.message, inCouponID.value, true, response.discount)
+                    : renderCheckCupon(response.error)
             })
         }
     })
 
+    const renderCheckCupon = (msg, cupon = "", valid = false, discount = 0 ) => {
+        cart.setCoupon(cupon)
+        localStorage.setItem('validCoupon', JSON.stringify({code: cupon, discount: discount}))
+
+        statusMsgCoupon.classList.toggle('invalid', !valid);
+        statusMsgCoupon.classList.toggle('valid', valid);
+
+        statusMsgCoupon.textContent = msg
+        updatePriceValues()
+    }
+
     btnCheckout.addEventListener('click',(e)=>{
-        if (cart.products.length!==0){
-        checkOutAPI(cart).then((response)=>{
-            if (response.success){
-                alert(response.message)
-                cart.clearCart()
-                localStorage.setItem('validCoupon',JSON.stringify({code: '', discount: '' }))
-                window.location.href = '/index.html'
-            }
-            else{
-                cart.setCoupon("")
-                alert(response.error)
-            }
-        })
+        if (cart.products.length !== 0){
+            checkOutAPI(cart).then((response) => {
+                if (response.success){
+                    alert(response.message)
+                    cart.clearCart()
+                    localStorage.setItem('validCoupon', JSON.stringify({code: '', discount: '' }))
+                    window.location.href = '/index.html'
+                }
+                else{
+                    cart.setCoupon("")
+                    alert(response.error)
+                }
+            })
             return
         }
         alert('Your cart is empty!')
     })
 
-    document.addEventListener('CartChange',(e)=>{
-        updatePriceValues()
-    })
+    document.addEventListener('CartChange', updatePriceValues)
 
     return checkoutContainerEl
 }
