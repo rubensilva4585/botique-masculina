@@ -1,5 +1,7 @@
 import {checkCouponAPI, checkOutAPI} from "../../services/ProductsAPI.js";
 import {cart} from "../../pageCart.js";
+import {getCouponFromLocalStorage, saveCouponOnLocalStorage} from "../../localStorage/couponLocalStorage.js";
+import {showReceiptModal} from "./receiptModal.js";
 
 export function createCheckoutComponent(){
     const checkoutContainerEl = document.createElement('div')
@@ -25,24 +27,23 @@ export function createCheckoutComponent(){
           </div>
         </div>
            <button id="btnCheckout" class="checkout-btn" type="submit">Checkout</button>
+           <button id="teste" class="checkout-btn" type="submit">teste</button>
     `
-    const formCheckCoupon= checkoutContainerEl.querySelector('#formCoupon')
-    const inCouponID= checkoutContainerEl.querySelector('#couponID')
-    const statusMsgCoupon= checkoutContainerEl.querySelector('#statusMsgCoupon')
+    const formCheckCoupon   = checkoutContainerEl.querySelector('#formCoupon')
+    const inCouponID        = checkoutContainerEl.querySelector('#couponID')
+    const statusMsgCoupon   = checkoutContainerEl.querySelector('#statusMsgCoupon')
 
-    const cartSubTotal = checkoutContainerEl.querySelector('#cartSubTotal')
-    const cartDiscount = checkoutContainerEl.querySelector('#cartDiscount')
-    const cartTotal = checkoutContainerEl.querySelector('#cartTotal')
-    const btnCheckout= checkoutContainerEl.querySelector('#btnCheckout')
-
-
-    let prevCoupon = {code:'', discount:''}
+    const cartSubTotal      = checkoutContainerEl.querySelector('#cartSubTotal')
+    const cartDiscount      = checkoutContainerEl.querySelector('#cartDiscount')
+    const cartTotal         = checkoutContainerEl.querySelector('#cartTotal')
+    const btnCheckout       = checkoutContainerEl.querySelector('#btnCheckout')
 
     function updatePriceValues(){
         const cartTotalPrice = cart._getCartTotalPrice().toFixed(2);
         cartSubTotal.textContent = cartTotalPrice + '$'
 
-        prevCoupon = JSON.parse(localStorage.getItem('validCoupon'))  
+        const prevCoupon = getCouponFromLocalStorage()
+
         prevCoupon.code && prevCoupon.discount
             ? (inCouponID.value = prevCoupon.code,
                 cartDiscount.textContent = `${prevCoupon.discount}%`,
@@ -61,15 +62,15 @@ export function createCheckoutComponent(){
                     return
 
                 response.success
-                    ? renderCheckCupon(response.message, inCouponID.value, true, response.discount)
-                    : renderCheckCupon(response.error)
+                    ? renderCheckCoupon(response.message, inCouponID.value, true, response.discount)
+                    : renderCheckCoupon(response.error)
             })
         }
     })
 
-    const renderCheckCupon = (msg, cupon = "", valid = false, discount = 0 ) => {
-        cart.setCoupon(cupon)
-        localStorage.setItem('validCoupon', JSON.stringify({code: cupon, discount: discount}))
+    const renderCheckCoupon = (msg, coupon = "", valid = false, discount = 0 ) => {
+        cart.setCoupon(coupon)
+        saveCouponOnLocalStorage(coupon, discount)
 
         statusMsgCoupon.classList.toggle('invalid', !valid);
         statusMsgCoupon.classList.toggle('valid', valid);
@@ -78,14 +79,13 @@ export function createCheckoutComponent(){
         updatePriceValues()
     }
 
-    btnCheckout.addEventListener('click',(e)=>{
+    btnCheckout.addEventListener('click',()=>{
         if (cart.products.length !== 0){
             checkOutAPI(cart).then((response) => {
                 if (response.success){
-                    alert(response.message)
+                    showReceiptModal(cart, getCouponFromLocalStorage().discount, response.message)
                     cart.clearCart()
-                    localStorage.setItem('validCoupon', JSON.stringify({code: '', discount: '' }))
-                    window.location.href = '/index.html'
+                    saveCouponOnLocalStorage()
                 }
                 else{
                     cart.setCoupon("")
@@ -95,6 +95,10 @@ export function createCheckoutComponent(){
             return
         }
         alert('Your cart is empty!')
+    })
+
+    checkoutContainerEl.querySelector('#teste').addEventListener('click', ()=>{
+        showReceiptModal(cart, getCouponFromLocalStorage().discount, 'CONA')
     })
 
     document.addEventListener('CartChange', updatePriceValues)

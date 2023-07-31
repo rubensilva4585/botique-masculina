@@ -4,7 +4,7 @@ import './style.css'
 import { setNavBar } from './components/navbar/navbar'
 import {createCartGrid} from './components/cart/cart'
 import {Cart} from "./models/Cart.js";
-import {showEmptyCartMessage} from "./utils/showEmptyCartMessage.js";
+import {showEmptyCartMessage} from "./components/cart/showEmptyCartMessage.js";
 import {setFooter} from "./components/footer/footer.js";
 
 setNavBar()

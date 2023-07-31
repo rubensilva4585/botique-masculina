@@ -3,6 +3,7 @@ import {cart} from "../../pageMain.js";
 import {inputKeyIsNumber} from "../../utils/inputKeyIsNumber.js";
 import {Product} from "../../models/Product.js";
 import {starsContainerEl} from "./productCard.js";
+import {validInputNumber} from "../../utils/validInputNumber.js";
 export function showProductModal(product){
     const body = document.querySelector('body')
     product = new Product(product)
@@ -78,14 +79,14 @@ export function showProductModal(product){
     qntInput.addEventListener('input', handleChangeInput)
 
     function handleChangeInput(){
-        isNaN(qntInput.value) || qntInput.value==="" && (qntInput.value='1')
+        validInputNumber(qntInput.value)
+            && (qntInput.value='1')
 
         const productInCart = cart.products.find((productInCart)=> productInCart.id === product.id)
-        productInCart ?
-            !product.checkStock( parseInt(qntInput.value) + parseInt(cart.products[cart.products.findIndex(productInCart => productInCart.id === product.id)].quantity))
+        productInCart
+            ? !product.checkStock( parseInt(qntInput.value) + parseInt(cart.products[cart.products.findIndex(productInCart => productInCart.id === product.id)].quantity))
                 && (qntInput.value = Math.abs(product.quantity - productInCart.quantity))
-            :
-            !product.checkStock(qntInput.value) && (qntInput.value = product.quantity)
+            : !product.checkStock(qntInput.value) && (qntInput.value = product.quantity)
     }
 
     body.appendChild(productModal);

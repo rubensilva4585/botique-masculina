@@ -1,7 +1,8 @@
 import {cart} from "../../pageCart.js";
 import {inputKeyIsNumber} from "../../utils/inputKeyIsNumber.js";
 import {Product} from "../../models/Product.js";
-import {showEmptyCartMessage} from "../../utils/showEmptyCartMessage.js";
+import {showEmptyCartMessage} from "./showEmptyCartMessage.js";
+import {validInputNumber} from "../../utils/validInputNumber.js";
 
 export function addProductToCartPage(product, quantity){
     product = new Product(product)
@@ -44,14 +45,17 @@ export function addProductToCartPage(product, quantity){
     })
 
     cartQntInput.addEventListener('keydown',(e)=>{
-        if(!inputKeyIsNumber(e.keyCode))
-            e.preventDefault()
+        !inputKeyIsNumber(e.keyCode)
+            && e.preventDefault()
     })
 
     cartQntInput.addEventListener('input', handleChangeInputCart)
     function handleChangeInputCart(){
-        isNaN(cartQntInput.value) || cartQntInput.value==="" && (cartQntInput.value='1')
-        product.checkStock(cartQntInput.value) ? cart.updateQuantity(product.id, cartQntInput.value) : cartQntInput.value = product.quantity
+        validInputNumber(cartQntInput.value)
+            && (cartQntInput.value='1')
+        !product.checkStock(cartQntInput.value)
+            && (cartQntInput.value = product.quantity)
+        cart.updateQuantity(product.id, cartQntInput.value)
     }
 
     btnDel.addEventListener('click', ()=>{

@@ -1,5 +1,5 @@
 import { getRandomUserAPI } from '../services/getUserAPI'
-import { getUsersFromLocalStorage, saveUsersOnLocalStorage } from './LocalStorage'
+import {getUsersFromLocalStorage, saveUsersOnLocalStorage} from "../localStorage/usersLocalStorage.js"
 
 export async function getAllUsers(refresh = false) {
     if (localStorage.getItem("storedUsers") === null || refresh) {
