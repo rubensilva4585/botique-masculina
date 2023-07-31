@@ -24,38 +24,38 @@ export function showReceiptModal(cart, discount, message){
         const productRowReceipt = document.createElement('div')
         productRowReceipt.classList.add('product')
         productRowReceipt.innerHTML = `
-    <div class="product-left">
-        <div class="product-image">
-          <img src="${product.image}" alt="product image">
-        </div>
-        <div class="product-details">
-          <div class="product-name">${product.name}</div>
-          <div class="product-price">$${product.price} p/un.</div>
-        </div>
-      </div>
-      <div class="product-right">
-        <div class="receipt-product-quantity">x${productInCart.quantity} un</div>
-        <div class="receipt-product-price">$${product.price*productInCart.quantity}</div>
-      </div>
-`
+          <div class="product-left">
+            <div class="product-image">
+              <img src="${product.image}" alt="product image">
+            </div>
+            <div class="product-details">
+              <div class="product-name">${product.name}</div>
+              <div class="product-price">$${product.price} p/un.</div>
+            </div>
+          </div>
+          <div class="product-right">
+            <div class="receipt-product-quantity">x${productInCart.quantity} un</div>
+            <div class="receipt-product-price">$${product.price*productInCart.quantity}</div>
+          </div>
+        `
         productSection.appendChild(productRowReceipt)
     })
 
 
     const detailSection = document.createElement('div')
     detailSection.innerHTML=`
-        <div class="container order-total-container">
-          <div class="order-total-text">
-            <p>Sub-total</p>
-            <p>Discount</p>
-            <p>Total</p>
-          </div>
-          <div class="order-total-values">
-            <p id="cartSubTotal">${cart._getCartTotalPrice().toFixed(2)}$</p>
-            <p id="cartDiscount">${discount}%</p>
-            <p id="cartTotal">${(cart._getCartTotalPrice() * ( 1 - parseInt(discount) / 100 )).toFixed(2)} $</p>
-          </div>
+      <div class="container order-total-container">
+        <div class="order-total-text">
+          <p>Sub-total</p>
+          <p>Discount</p>
+          <p>Total</p>
         </div>
+        <div class="order-total-values">
+          <p id="cartSubTotal">${cart._getCartTotalPrice().toFixed(2)}$</p>
+          <p id="cartDiscount">${discount}%</p>
+          <p id="cartTotal">${(cart._getCartTotalPrice() * ( 1 - parseInt(discount) / 100 )).toFixed(2)} $</p>
+        </div>
+      </div>
     `
 
     receiptModalContent.appendChild(detailSection)
@@ -67,9 +67,7 @@ export function showReceiptModal(cart, discount, message){
 
     const closeModalBtn = document.createElement('div')
     closeModalBtn.classList.add('modal-close')
-    closeModalBtn.innerHTML=`
-        <i class="fas fa-times"></i>
-    `
+    closeModalBtn.innerHTML = `<i class="fas fa-times"></i>`
     receiptModalContent.appendChild(closeModalBtn)
 
     closeModalBtn.addEventListener('click', ()=>{

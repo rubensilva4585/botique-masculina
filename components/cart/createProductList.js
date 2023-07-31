@@ -11,9 +11,7 @@ export function createProductList(){
     lblEmptyCart.classList.add('empty-cart')
     productListEl.appendChild(lblEmptyCart)
 
-    cart.products.map((product)=>{
-        productListEl.appendChild(addProductToCartPage(getProductById(product.id),product.quantity))
-    })
+    cart.products.map((product) => productListEl.appendChild(addProductToCartPage(getProductById(product.id),product.quantity)))
 
     return productListEl
 }

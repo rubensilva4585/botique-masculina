@@ -32,10 +32,9 @@ export function createProductCard(product){
         </div>
       </div>
     `
-    if(product.quantity > 0)
-      productCardEl.addEventListener('click', () => showProductModal(product))
-    else
-      productCardEl.classList.add('out-of-stock')
+    product.quantity > 0
+      ? productCardEl.addEventListener('click', () => showProductModal(product))
+      : productCardEl.classList.add('out-of-stock')
 
     return productCardEl
 }

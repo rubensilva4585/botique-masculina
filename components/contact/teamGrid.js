@@ -17,7 +17,11 @@ export async function createTeamGrid() {
   teamGrid.appendChild(teamContent);
 
   getAllUsers().then((userArray) => userArray.map((user, index) => {
-    const teamCard = createTeamCard(user, index == 0 ? 'Sales Representative' : 'Customer Support Specialist');
+    const teamCard = createTeamCard(user, 
+      index == 0 
+      ? 'Sales Representative' 
+      : 'Customer Support Specialist');
+      
     teamContent.appendChild(teamCard);
   }))
 

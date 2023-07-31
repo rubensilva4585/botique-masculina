@@ -46,18 +46,18 @@ export function showProductModal(product){
     productModal.querySelector(".modal-close")
         .addEventListener('click', () => productModal.remove())
 
-    const btnAdd = productModal.querySelector("#btn_add")
-    const btnRmv = productModal.querySelector("#btn_rmv")
-    const qntInput = productModal.querySelector("#product-quantity-input")
-    const btnAddCart = productModal.querySelector("#btn-addCart")
+    const btnAdd        = productModal.querySelector("#btn_add")
+    const btnRmv        = productModal.querySelector("#btn_rmv")
+    const qntInput      = productModal.querySelector("#product-quantity-input")
+    const btnAddCart    = productModal.querySelector("#btn-addCart")
 
     const productInCart = cart.products.find((productInCart) => productInCart.id === product.id)
 
     productInCart
         && parseInt(productInCart.quantity) === parseInt(product.quantity)
-        && (btnAdd.disabled = true,
-            btnRmv.disabled = true,
-            qntInput.disabled = true,
+        && (btnAdd.disabled     = true,
+            btnRmv.disabled     = true,
+            qntInput.disabled   = true,
             btnAddCart.disabled = true)
 
     btnAdd.addEventListener('click', ()=> {
