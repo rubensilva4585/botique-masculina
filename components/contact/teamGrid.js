@@ -1,7 +1,6 @@
-import { getRandomUserAPI } from '../../services/getUserAPI.js'
-import { createTeamCard } from './teamCard.js'
-import { createPageTitle } from "../createPageTitle.js";
-
+import { createTeamCard } from './teamCard';
+import { createPageTitle } from "../createPageTitle";
+import { getAllUsers } from '../../logic/getAllUsers';
 
 export async function createTeamGrid() {
   const teamGrid = document.createElement('div');
@@ -17,11 +16,10 @@ export async function createTeamGrid() {
   teamGrid.appendChild(teamHeader);
   teamGrid.appendChild(teamContent);
 
-  const userArray = await getRandomUserAPI();
-  userArray.map((user, index) => {
+  getAllUsers().then((userArray) => userArray.map((user, index) => {
     const teamCard = createTeamCard(user, index == 0 ? 'Sales Representative' : 'Customer Support Specialist');
     teamContent.appendChild(teamCard);
-  });
+  }))
 
   document.querySelector("main").append(teamGrid);
 }

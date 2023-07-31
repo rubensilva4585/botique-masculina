@@ -1,9 +1,10 @@
 import { createContactForm } from '../contact/contactForm.js'
-import {createPageTitle} from "../createPageTitle.js";
+import { createPageTitle } from "../createPageTitle.js";
 
 export function createContactFormGrid() {
     const contactFormDiv = document.createElement('div');
     contactFormDiv.classList.add('contact');
+    contactFormDiv.setAttribute('id', 'contact-form');
 
     const contactContainer = document.createElement('div');
     contactContainer.classList.add('container');

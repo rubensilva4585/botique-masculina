@@ -1,7 +1,6 @@
 export function createContactForm() {
     const contactFormMain = document.createElement('div');
     contactFormMain.classList.add('contact-form-main');
-    contactFormMain.setAttribute('id', 'contact-form');
 
     const contactForm = document.createElement('form');
     contactForm.classList.add('contact-form');

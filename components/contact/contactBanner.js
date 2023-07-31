@@ -37,14 +37,3 @@ function scrollButton() {
     const contactForm = document.querySelector('#contact-form');
     contactForm.scrollIntoView({ behavior: 'smooth' });
 }
-
-{/* <div class="contact-banner">
-    <div class="contact-banner-static">
-        <div class="contact-banner-static-content">
-            <h1>Get in touch</h1>
-            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</h5>
-            <a href="#contact-form"><button type="button" >Contact us</button></a>
-        </div>
-    </div>
-    <img class="contact-banner-image" src="https://robbreport.com/wp-content/uploads/2023/07/WatchShop_Int3.jpg?w=1000" alt="Image3">
-</div> */}

@@ -14,4 +14,10 @@ export class User {
     get image() {
         return this.#image;
     }
+
+    stringify() {
+        return JSON.stringify({
+            name: this.#name, image: this.#image
+        })
+    }
 }
