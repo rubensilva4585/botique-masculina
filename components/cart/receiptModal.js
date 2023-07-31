@@ -3,7 +3,6 @@ import '../../styles/receiptModal.css'
 import {getProductById} from "../../utils/getProductById.js"
 
 export function showReceiptModal(cart, discount, message){
-    const body = document.querySelector('body')
     const receiptModal = document.createElement('div')
     receiptModal.classList.add('product-modal')
 
@@ -71,5 +70,5 @@ export function showReceiptModal(cart, discount, message){
         receiptModal.remove()
         window.location.href = '/index.html'
     })
-    body.appendChild(receiptModal);
+    document.querySelector('body').appendChild(receiptModal);
 }
