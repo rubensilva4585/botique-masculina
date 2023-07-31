@@ -3,7 +3,7 @@ export class User {
     #name;
     #image;
 
-    constructor(name, image) {
+    constructor(name = "NoName", image = "assets/img/unknownUser.jpg") {
         this.#name = name;
         this.#image = image;
     }

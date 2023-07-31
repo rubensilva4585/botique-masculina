@@ -9,7 +9,7 @@ export async function getAllProductsAPI() {
                 return data.map((product) => new Product(product))
         }
         catch (error){
-                alert(error.message)
+                alert("Internal Server Error")
         }
 }
 
@@ -25,7 +25,7 @@ export async function checkCouponAPI(coupon){
                 return response.json()
         }
         catch (error){
-                alert(error.message)
+                return {error: "Internal Server Error"};
         }
 }
 
@@ -41,7 +41,7 @@ export async function checkOutAPI(cart){
                 return response.json()
         }
         catch (error){
-                alert(error.message)
+                return {error: "Internal Server Error"};
         }
 }
 

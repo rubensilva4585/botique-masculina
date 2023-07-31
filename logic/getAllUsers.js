@@ -1,10 +1,10 @@
 import { getRandomUserAPI } from '../services/getUserAPI'
 import {getUsersFromLocalStorage, saveUsersOnLocalStorage} from "../localStorage/usersLocalStorage.js"
 
-export async function getAllUsers(refresh = false) {
-    if (localStorage.getItem("storedUsers") === null || refresh) {
+export async function getAllUsers() {
+    if (localStorage.getItem("storedUsers") === null) {
         const allUsers = await getRandomUserAPI()
-        saveUsersOnLocalStorage(await allUsers)
+        saveUsersOnLocalStorage(allUsers)
         return allUsers
     } else {
         return getUsersFromLocalStorage()

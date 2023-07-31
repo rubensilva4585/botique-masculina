@@ -57,9 +57,6 @@ export function createCheckoutComponent(){
         if(inCouponID.value){
             formCheckCoupon.disabled=true
             checkCouponAPI(inCouponID.value.trim()).then((response)=>{
-                if(!response)
-                    return
-
                 response.success
                     ? renderCheckCoupon(response.message, inCouponID.value.trim(), true, response.discount)
                     : renderCheckCoupon(response.error)
